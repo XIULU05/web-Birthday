@@ -2,74 +2,72 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feliz Cumpleaños ❤️</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="icono.png"> <!-- opcional: favicon -->
 </head>
 <body>
-  <div class="main-container">
-    <div class="panel-left">
-      <div class="section">
-        <h2>INTEGRACIÓN</h2>
-        <div class="drivers-grid">
-          <div class="driver-portrait" data-driver="max">
-            <img src="ruta/a/max.jpg" alt="Max Verstappen">
-            <p>Max Verstappen</p>
-          </div>
-          <div class="driver-portrait" data-driver="charles">
-            <img src="ruta/a/charles.jpg" alt="Charles Leclerc">
-            <p>Charles Leclerc</p>
-          </div>
-          <div class="driver-portrait" data-driver="lewis">
-            <img src="ruta/a/lewis.jpg" alt="Lewis Hamilton">
-            <p>Lewis Hamilton</p>
-          </div>
-          <div class="driver-portrait" data-driver="george">
-            <img src="ruta/a/george.jpg" alt="George Russell">
-            <p>George Russell</p>
-          </div>
-        </div>
-      </div>
-      <div class="section">
-        <h2>Muro de deseos</h2>
-        <p>Escribe un deseo aquí:</p>
-        <textarea placeholder="Escribe aquí..."></textarea>
-        <button>Agregar</button>
-      </div>
-    </div>
-
-    <div class="central-content">
-      <div class="message-box">
-        <h1>¡Hola mi amor!</h1>
-        <p>Hoy celebramos tu día — este lugar es para ti.</p>
-      </div>
-      <div class="countdown">
-        <span id="countdown-hours">00</span> HORAS
-        <span id="countdown-minutes">00</span> MINUTOS
-        <span id="countdown-seconds">00</span> SEGUNDOS
-      </div>
-    </div>
-
-    <div class="panel-right">
-      <div class="section">
-        <h2>Sorpresa</h2>
-        <p>Haz clic para abrir tu regalo</p>
-        <button>Abrir Regalo 🎁</button>
-      </div>
-      <div class="section">
-        <h2>Música</h2>
-        <div class="music-player">
-          <p>Just Keep Watching</p>
-          <button>▶️</button>
-          <button>⏸️</button>
-        </div>
-      </div>
+  <!-- Overlay para el texto principal (no tapa todo el fondo) -->
+  <div class="overlay">
+    <div class="texto-superpuesto" id="texto-superpuesto">
+      <h1 id="typed-title"></h1>
+      <p id="typed-sub"></p>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Botón flotante para abrir el menú lateral -->
+  <button class="menu-button" id="menuBtn" aria-label="Abrir menú de sorpresas">🎁</button>
+
+  <!-- Panel lateral (menú de sorpresas) -->
+  <aside class="side-menu" id="sideMenu" aria-hidden="true">
+    <button class="close-btn" id="closeMenu" aria-label="Cerrar menú">✖</button>
+
+    <nav class="menu-sections">
+      <section id="section-galeria">
+        <h2>Galería - Corredores</h2>
+        <div class="galeria">
+          <!-- miniaturas de ejemplo; reemplaza con imágenes reales -->
+          <img src="max.jpg" alt="Max Verstappen">
+          <img src="charles.jpg" alt="Charles Leclerc">
+          <img src="lewis.jpg" alt="Lewis Hamilton">
+          <img src="george.jpg" alt="George Russell">
+        </div>
+      </section>
+
+      <section id="section-musica">
+        <h2>Música</h2>
+        <div class="audio-control">
+          <button id="playAudio">▶️ Reproducir</button>
+          <button id="pauseAudio">⏸️ Pausar</button>
+          <audio id="audio" src="tu-cancion.mp3" preload="none"></audio>
+        </div>
+      </section>
+
+      <section id="section-sorpresa">
+        <h2>Sorpresa</h2>
+        <button id="openSurprise">Abrir regalo 🎁</button>
+        <div id="surpriseBox" class="hidden">
+          <p>¡Feliz cumpleaños, mi amor! (Aquí va tu mensaje largo o video)</p>
+          <!-- Podrías reemplazar por <video> o un iframe -->
+        </div>
+      </section>
+
+      <section id="section-deseos">
+        <h2>Muro de deseos</h2>
+        <p>Escribe un deseo (solo local):</p>
+        <input id="wishInput" placeholder="Escribe aquí..." />
+        <button id="addWish">Agregar</button>
+        <div id="wishList"></div>
+      </section>
+    </nav>
+
+  </aside>
+
+<script src="script.js"></script>
 </body>
 </html>
+
+
 
 
 
