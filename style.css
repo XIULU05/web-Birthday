@@ -2,15 +2,21 @@
 
 /* Estilo general de la página */
 body {
-     font-family: Arial, sans-serif;
-    background-color: #1a1a1a; /* color de respaldo por si no carga la imagen */
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a; /* color de respaldo */
     background-image: url('fondo.png'); /* tu imagen de fondo */
     background-size: cover; /* la imagen ocupa toda la pantalla */
-    background-position: center; /* centra la imagen */
-    background-repeat: no-repeat; /* no repite la imagen */
+    background-position: center center; /* centra la imagen vertical y horizontal */
+    background-repeat: no-repeat; /* evita que se repita la imagen */
+    height: 100vh; /* fuerza que el body ocupe toda la altura de la ventana */
+    margin: 0; /* elimina márgenes predeterminados */
+    display: flex; /* usamos flex para centrar contenido verticalmente */
+    flex-direction: column;
+    justify-content: center; /* centra verticalmente */
+    align-items: center; /* centra horizontalmente */
     color: #ffffff;
     text-align: center;
-    padding: 50px;
+    padding: 20px; /* espacio interno para que no quede pegado al borde */
 }
 
 /* Estilo del título principal */
@@ -18,6 +24,7 @@ h1 {
     color: #ff0000; /* rojo F1 */
     font-size: 48px;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* sombra para que destaque sobre el fondo */
 }
 
 /* Estilo del párrafo */
@@ -25,7 +32,9 @@ p {
     font-size: 24px;
     line-height: 1.5;
     color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* sombra ligera para mejor legibilidad */
 }
+
 
 
 
