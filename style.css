@@ -1,136 +1,140 @@
-/* style.css */
+/* style.css - versión con menú lateral y overlay */
 
-/* Estilos Generales y del Fondo */
+/* Reset mínimo */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+/* Fondo y contenedor principal */
 body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    color: #ffffff;
+    font-family: Arial, sans-serif;
+    background-color: #111;
     background-image: url('fondo.png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
+    margin: 0;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
+    color: #fff;
+    display: block;
 }
 
-/* Contenedor Principal para la Estructura */
-.main-container {
-    width: 100%;
+/* Overlay centrador (no cubre todo con opacidad) */
+.overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: center; /* horizontal */
+    padding: 30px;
+    pointer-events: none; /* no bloquea clicks fuera */
+}
+
+/* Caja del texto: semitransparente pero pequeña para no ocultar el auto */
+.texto-superpuesto {
+    background: rgba(0,0,0,0.45);
+    padding: 16px 22px;
+    border-radius: 12px;
+    display: inline-block;
+    pointer-events: auto;
+    max-width: 90%;
+}
+
+/* Título y párrafo */
+#typed-title {
+    margin: 0;
+    font-size: 44px;
+    color: #ffdd00; /* tono cálido */
+    text-shadow: 0 4px 14px rgba(0,0,0,0.7);
+    letter-spacing: 1px;
+}
+#typed-sub {
+    margin: 8px 0 0 0;
+    font-size: 20px;
+    color: #fff;
+    opacity: 0.95;
+}
+
+/* Botón flotante de menú */
+.menu-button {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(180deg,#ff5252,#ff1744);
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.4);
+    z-index: 1200;
+}
+
+/* Panel lateral */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -420px; /* hidden by default */
+    width: 400px;
     height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5%;
-    box-sizing: border-box;
+    background: rgba(8,8,8,0.96);
+    box-shadow: -8px 0 30px rgba(0,0,0,0.6);
+    padding: 20px;
+    transition: right 300ms ease;
+    z-index: 1100;
+    overflow-y: auto;
+    color: #fff;
 }
 
-/* Estilos de los Paneles Laterales */
-.panel-left, .panel-right {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 15px;
-    padding: 25px;
-    width: 250px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+/* Cuando abierto */
+.side-menu.open { right: 0; }
+
+/* Botón cerrar */
+.close-btn {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.section {
-    margin-bottom: 25px;
-}
-
-.section h2 {
-    color: #ff0000;
-    text-transform: uppercase;
-    font-size: 1.2em;
-    border-bottom: 2px solid #ff0000;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-}
-
-/* Estilos de la Galería de Corredores */
-.drivers-grid {
+/* Galería miniaturas */
+.galeria {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 8px;
 }
-
-.driver-portrait img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+.galeria img {
+    width: 100%;
+    height: 120px;
     object-fit: cover;
-    border: 3px solid #ff0000;
-    transition: transform 0.3s ease;
-}
-
-.driver-portrait:hover img {
-    transform: scale(1.1);
-}
-
-/* Estilos del Contenido Central */
-.central-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 20px;
-}
-
-.message-box {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 15px 30px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-h1 {
-    font-size: 2.5em;
-    color: #ffcc00; /* Oro */
-}
-
-p {
-    font-size: 1.2em;
-}
-
-.countdown {
-    font-size: 2em;
-    font-weight: bold;
-    color: #ff0000;
-    text-shadow: 2px 2px 4px #000;
-}
-
-/* Estilos para botones y formularios */
-button {
-    background-color: #ff0000;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: transform .2s ease, filter .2s ease;
+}
+.galeria img:hover { transform: scale(1.03); filter: brightness(1.05); }
+
+/* Surprise & wishes */
+#surpriseBox.hidden { display: none; }
+#wishList { margin-top: 10px; }
+.wish-item {
+    background: rgba(255,255,255,0.06);
+    padding: 8px;
+    border-radius: 6px;
+    margin-top: 6px;
 }
 
-button:hover {
-    background-color: #cc0000;
+/* Responsivo simple */
+@media (max-width: 600px) {
+  #typed-title { font-size: 28px; }
+  .side-menu { width: 100%; right: -100%; }
+  .side-menu.open { right: 0; }
 }
 
-textarea {
-    width: 90%;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border: 1px solid #ff0000;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    resize: none;
-}
+
 
 
 
