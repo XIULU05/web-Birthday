@@ -29,7 +29,7 @@ body {
 .f1-header {
     text-align: center;
     padding: 20px 0;
-    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    background: rgba(0, 0, 0, 0.2); /* Fondo semitransparente */
     position: relative;
     z-index: 10;
     font-family: 'Roboto Mono', monospace; /* Tipo de letra futurista */
@@ -161,6 +161,7 @@ body::after {
     font-size: 1.2em;
     text-align: left;
 }
+
 
 
 
