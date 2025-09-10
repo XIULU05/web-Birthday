@@ -1,4 +1,6 @@
-// 1. Menú de música y reproducción
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Funcionalidad del Menú de Música
     const musicBtn = document.getElementById('music-btn');
     const playlistMenu = document.getElementById('playlist-menu');
     const music = document.getElementById('background-music');
@@ -13,42 +15,48 @@
             const songSrc = item.getAttribute('data-src');
             music.src = songSrc;
             music.play();
-            // Opcional: Cerrar el menú al seleccionar una canción
-            playlistMenu.classList.add('hidden'); 
+            playlistMenu.classList.add('hidden'); // Cierra el menú después de seleccionar
         });
     });
 
-    // 2. Galería de pilotos
+    // 2. Funcionalidad de la Galería de Pilotos (Modal)
     const galleryToggleBtn = document.getElementById('gallery-toggle-btn');
-    const gallerySidebar = document.getElementById('gallery-sidebar');
-    const closeBtn = document.querySelector('.close-btn');
+    const galleryModal = document.getElementById('gallery-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
 
     galleryToggleBtn.addEventListener('click', () => {
-        gallerySidebar.classList.add('open');
+        galleryModal.style.display = 'block';
     });
 
-    closeBtn.addEventListener('click', () => {
-        gallerySidebar.classList.remove('open');
+    closeModalBtn.addEventListener('click', () => {
+        galleryModal.style.display = 'none';
     });
 
-    // 3. Mensaje personal
+    // Cierra el modal si se hace clic fuera de él
+    window.addEventListener('click', (event) => {
+        if (event.target === galleryModal) {
+            galleryModal.style.display = 'none';
+        }
+    });
+
+    // 3. Animación de escritura del Mensaje Personal
     const messageText = document.getElementById('message-text');
-    const fullMessage = "Aquí va tu mensaje personal, letra por letra. Esto lo hará más especial para ella. Es lo que más va a valorar.";
+    const fullMessage = "Aquí va tu mensaje personal. Recuerda que este mensaje es lo que más va a valorar. Hazlo único y especial.";
 
     let i = 0;
     function typeWriter() {
         if (i < fullMessage.length) {
             messageText.innerHTML += fullMessage.charAt(i);
             i++;
-            setTimeout(typeWriter, 50); // Ajusta la velocidad aquí
+            setTimeout(typeWriter, 50); // Velocidad de escritura
         }
     }
 
-    // Inicia la animación del mensaje
     setTimeout(() => {
         typeWriter();
-    }, 2000); // Espera 2 segundos antes de empezar a escribir
+    }, 2000); // Espera 2 segundos para iniciar la animación
 });
+
 
 
 
