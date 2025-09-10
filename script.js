@@ -1,16 +1,21 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Música
+// 1. Menú de música y reproducción
     const musicBtn = document.getElementById('music-btn');
+    const playlistMenu = document.getElementById('playlist-menu');
     const music = document.getElementById('background-music');
+    const songItems = document.querySelectorAll('.song-item');
 
     musicBtn.addEventListener('click', () => {
-        if (music.paused) {
+        playlistMenu.classList.toggle('hidden');
+    });
+
+    songItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const songSrc = item.getAttribute('data-src');
+            music.src = songSrc;
             music.play();
-            musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            music.pause();
-            musicBtn.innerHTML = '<i class="fas fa-music"></i>';
-        }
+            // Opcional: Cerrar el menú al seleccionar una canción
+            playlistMenu.classList.add('hidden'); 
+        });
     });
 
     // 2. Galería de pilotos
@@ -44,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typeWriter();
     }, 2000); // Espera 2 segundos antes de empezar a escribir
 });
+
 
 
 
