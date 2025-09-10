@@ -29,10 +29,12 @@ body {
 .f1-header {
     text-align: center;
     padding: 20px 0;
-    background: rgba(0, 0, 0, 0.1); /* Fondo semitransparente */
+    /* Ajustamos la opacidad del fondo a 0.2 para que se vea más translúcido */
+    background: rgba(0, 0, 0, 0.2); 
     position: relative;
     z-index: 10;
-    font-family: 'Roboto Mono', monospace; /* Tipo de letra futurista */
+    /* Usamos la fuente Orbitron y una de respaldo */
+    font-family: 'Orbitron', sans-serif;
 }
 
 h1 {
@@ -40,12 +42,15 @@ h1 {
     font-size: 3em;
     text-transform: uppercase;
     letter-spacing: 5px;
+    /* Un color azul neon que combina con la paleta de colores de F1 */
+    color: #4dc2f4; 
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes neon-glow {
-    from { text-shadow: 0 0 10px #00f, 0 0 20px #00f; }
-    to { text-shadow: 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f; }
+    /* El efecto neon tiene un resplandor azul que armoniza con el fondo */
+    from { text-shadow: 0 0 10px #4dc2f4, 0 0 20px #4dc2f4; }
+    to { text-shadow: 0 0 20px #4dc2f4, 0 0 30px #4dc2f4, 0 0 40px #4dc2f4; }
 }
 
 /* Botón de música */
@@ -161,6 +166,7 @@ body::after {
     font-size: 1.2em;
     text-align: left;
 }
+
 
 
 
