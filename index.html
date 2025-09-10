@@ -12,17 +12,15 @@
 </head>
 <body>
 
-  <div class="music-container">
-    <button id="music-btn" class="music-button"><i class="fas fa-music"></i></button>
-    
-    <ul id="playlist-menu" class="playlist-menu hidden">
-        <li><button class="song-item" data-src="song1.mp3">Just Keep Watching</button></li>
-        <li><button class="song-item" data-src="song2.mp3">Tema de Ferrari</button></li>
-        <li><button class="song-item" data-src="song3.mp3">Otra Canción Favorita</button></li>
+    <div class="music-container">
+        <button id="music-btn" class="music-button"><i class="fas fa-music"></i></button>
+        <ul id="playlist-menu" class="playlist-menu hidden">
+            <li><button class="song-item" data-src="song1.mp3">Just Keep Watching</button></li>
+            <li><button class="song-item" data-src="song2.mp3">Tema de Ferrari</button></li>
+            <li><button class="song-item" data-src="song3.mp3">Otra Canción Favorita</button></li>
         </ul>
-    
-    <audio id="background-music" src="" loop></audio>
-</div>
+        <audio id="background-music" src="" loop></audio>
+    </div>
 
     <header class="f1-header">
         <h1>¡Feliz Cumpleaños,Vayholine!</h1>
@@ -33,28 +31,6 @@
     </div>
 
     <main>
-        <aside class="gallery-sidebar" id="gallery-sidebar">
-            <button class="close-btn">&times;</button>
-            <div class="carousel-container">
-                <div class="carousel-item">
-                    <img src="ia-verstappen.png" alt="vayholine con Verstappen">
-                    <p class="pit-board">Happy Birthday Champion!</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="ia-leclerc.png" alt="vayholine con Leclerc">
-                    <p class="pit-board">Te quiero más que a un Ferrari.</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="ia-hamilton.jpg" alt="[Nombre de ella] con Hamilton">
-                    <p class="pit-board">¡Eres la GOAT de mi vida!</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="ia-russell.jpg" alt="[Nombre de ella] con Russell">
-                    <p class="pit-board">Aceleras mi corazón.</p>
-                </div>
-            </div>
-        </aside>
-
         <button class="gallery-toggle-btn" id="gallery-toggle-btn">
             <i class="fas fa-car-side"></i> Pilotos Favoritos
         </button>
@@ -63,6 +39,30 @@
             <p id="message-text"></p>
         </section>
     </main>
+
+    <div id="gallery-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal-btn" id="close-modal-btn">&times;</span>
+            <div class="carousel-container">
+                <div class="carousel-item">
+                    <img src="ia-verstappen.png" alt="Vayholine con Verstappen">
+                    <p class="pit-board">Happy Birthday Champion!</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="ia-leclerc.png" alt="Vayholine con Leclerc">
+                    <p class="pit-board">Te quiero más que a un Ferrari.</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="ia-hamilton.jpg" alt="Vayholine con Hamilton">
+                    <p class="pit-board">¡Eres la GOAT de mi vida!</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="ia-russell.jpg" alt="Vayholine con Russell">
+                    <p class="pit-board">Aceleras mi corazón.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
