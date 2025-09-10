@@ -1,72 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Feliz Cumpleaños ❤️</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños, Vayholine!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-  <!-- Overlay para el texto principal (no tapa todo el fondo) -->
-  <div class="overlay">
-    <div class="texto-superpuesto" id="texto-superpuesto">
-      <h1 id="typed-title"></h1>
-      <p id="typed-sub"></p>
+
+    <button id="music-btn" class="music-button"><i class="fas fa-music"></i></button>
+    <audio id="background-music" src="Just-Keep-Watching.mp3" loop></audio>
+
+    <header class="f1-header">
+        <h1>¡Feliz Cumpleaños,Vayholine!</h1>
+    </header>
+
+    <div class="background-container">
+        <img src="fondo.png" alt="Fondo de Pista de F1" class="background-image">
     </div>
-  </div>
 
-  <!-- Botón flotante para abrir el menú lateral -->
-  <button class="menu-button" id="menuBtn" aria-label="Abrir menú de sorpresas">🎁</button>
+    <main>
+        <aside class="gallery-sidebar" id="gallery-sidebar">
+            <button class="close-btn">&times;</button>
+            <div class="carousel-container">
+                <div class="carousel-item">
+                    <img src="ia-verstappen.jpg" alt="[Nombre de ella] con Verstappen">
+                    <p class="pit-board">Happy Birthday Champion!</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="ia-leclerc.jpg" alt="[Nombre de ella] con Leclerc">
+                    <p class="pit-board">Te quiero más que a un Ferrari.</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="ia-hamilton.jpg" alt="[Nombre de ella] con Hamilton">
+                    <p class="pit-board">¡Eres la GOAT de mi vida!</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="ia-russell.jpg" alt="[Nombre de ella] con Russell">
+                    <p class="pit-board">Aceleras mi corazón.</p>
+                </div>
+            </div>
+        </aside>
 
-  <!-- Panel lateral (menú de sorpresas) -->
-  <aside class="side-menu" id="sideMenu" aria-hidden="true">
-    <button class="close-btn" id="closeMenu" aria-label="Cerrar menú">✖</button>
+        <button class="gallery-toggle-btn" id="gallery-toggle-btn">
+            <i class="fas fa-car-side"></i> Pilotos Favoritos
+        </button>
 
-    <nav class="menu-sections">
-      <section id="section-galeria">
-        <h2>Galería - Corredores</h2>
-        <div class="galeria">
-          <!-- miniaturas de ejemplo; reemplaza con imágenes reales -->
-          <img src="max.jpg" alt="Max Verstappen">
-          <img src="charles.jpg" alt="Charles Leclerc">
-          <img src="lewis.jpg" alt="Lewis Hamilton">
-          <img src="george.jpg" alt="George Russell">
-        </div>
-      </section>
+        <section class="personal-message">
+            <p id="message-text"></p>
+        </section>
+    </main>
 
-      <section id="section-musica">
-        <h2>Música</h2>
-        <div class="audio-control">
-          <button id="playAudio">▶️ Reproducir</button>
-          <button id="pauseAudio">⏸️ Pausar</button>
-          <audio id="audio" src="tu-cancion.mp3" preload="none"></audio>
-        </div>
-      </section>
-
-      <section id="section-sorpresa">
-        <h2>Sorpresa</h2>
-        <button id="openSurprise">Abrir regalo 🎁</button>
-        <div id="surpriseBox" class="hidden">
-          <p>¡Feliz cumpleaños, mi amor! (Aquí va tu mensaje largo o video)</p>
-          <!-- Podrías reemplazar por <video> o un iframe -->
-        </div>
-      </section>
-
-      <section id="section-deseos">
-        <h2>Muro de deseos</h2>
-        <p>Escribe un deseo (solo local):</p>
-        <input id="wishInput" placeholder="Escribe aquí..." />
-        <button id="addWish">Agregar</button>
-        <div id="wishList"></div>
-      </section>
-    </nav>
-
-  </aside>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
 
 
 
