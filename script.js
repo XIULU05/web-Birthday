@@ -1,72 +1,50 @@
-// script.js
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Música
+    const musicBtn = document.getElementById('music-btn');
+    const music = document.getElementById('background-music');
 
-// ---- Efecto de escritura ----
-const titleText = "¡Hola mi amor!";
-const subText = "Hoy celebramos tu día — este lugar es para ti.";
-const speed = 90;
+    musicBtn.addEventListener('click', () => {
+        if (music.paused) {
+            music.play();
+            musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+            music.pause();
+            musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+        }
+    });
 
-function typeEffect(targetId, text, cb) {
-  const target = document.getElementById(targetId);
-  let i = 0;
-  target.textContent = "";
-  const timer = setInterval(() => {
-    target.textContent += text.charAt(i);
-    i++;
-    if (i >= text.length) {
-      clearInterval(timer);
-      if (cb) cb();
+    // 2. Galería de pilotos
+    const galleryToggleBtn = document.getElementById('gallery-toggle-btn');
+    const gallerySidebar = document.getElementById('gallery-sidebar');
+    const closeBtn = document.querySelector('.close-btn');
+
+    galleryToggleBtn.addEventListener('click', () => {
+        gallerySidebar.classList.add('open');
+    });
+
+    closeBtn.addEventListener('click', () => {
+        gallerySidebar.classList.remove('open');
+    });
+
+    // 3. Mensaje personal
+    const messageText = document.getElementById('message-text');
+    const fullMessage = "Aquí va tu mensaje personal, letra por letra. Esto lo hará más especial para ella. Es lo que más va a valorar.";
+
+    let i = 0;
+    function typeWriter() {
+        if (i < fullMessage.length) {
+            messageText.innerHTML += fullMessage.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50); // Ajusta la velocidad aquí
+        }
     }
-  }, speed);
-}
 
-window.addEventListener('load', () => {
-  // Escribe el título y luego el subtítulo
-  typeEffect('typed-title', titleText, () => {
-    setTimeout(() => { typeEffect('typed-sub', subText); }, 350);
-  });
+    // Inicia la animación del mensaje
+    setTimeout(() => {
+        typeWriter();
+    }, 2000); // Espera 2 segundos antes de empezar a escribir
 });
 
-// ---- Menú lateral ----
-const menuBtn = document.getElementById('menuBtn');
-const sideMenu = document.getElementById('sideMenu');
-const closeMenu = document.getElementById('closeMenu');
-
-menuBtn.addEventListener('click', () => {
-  sideMenu.classList.add('open');
-  sideMenu.setAttribute('aria-hidden', 'false');
-});
-closeMenu.addEventListener('click', () => {
-  sideMenu.classList.remove('open');
-  sideMenu.setAttribute('aria-hidden', 'true');
-});
-
-// ---- Audio simple ----
-const audio = document.getElementById('audio');
-document.getElementById('playAudio').addEventListener('click', () => {
-  audio.play().catch(e => console.log('Autoplay bloqueado, usa el botón.'));
-});
-document.getElementById('pauseAudio').addEventListener('click', () => audio.pause());
-
-// ---- Sorpresa (mostrar/ocultar) ----
-document.getElementById('openSurprise').addEventListener('click', () => {
-  const box = document.getElementById('surpriseBox');
-  box.classList.toggle('hidden');
-});
-
-// ---- Muro de deseos (local) ----
-const wishInput = document.getElementById('wishInput');
-const addWish = document.getElementById('addWish');
-const wishList = document.getElementById('wishList');
-
-addWish.addEventListener('click', () => {
-  const text = wishInput.value.trim();
-  if (!text) return;
-  const div = document.createElement('div');
-  div.className = 'wish-item';
-  div.textContent = text;
-  wishList.prepend(div);
-  wishInput.value = '';
-});
 
 
 
