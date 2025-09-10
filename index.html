@@ -12,8 +12,17 @@
 </head>
 <body>
 
+  <div class="music-container">
     <button id="music-btn" class="music-button"><i class="fas fa-music"></i></button>
-    <audio id="background-music" src="Just-Keep-Watching.mp3" loop></audio>
+    
+    <ul id="playlist-menu" class="playlist-menu hidden">
+        <li><button class="song-item" data-src="song1.mp3">Just Keep Watching</button></li>
+        <li><button class="song-item" data-src="song2.mp3">Tema de Ferrari</button></li>
+        <li><button class="song-item" data-src="song3.mp3">Otra Canción Favorita</button></li>
+        </ul>
+    
+    <audio id="background-music" src="" loop></audio>
+</div>
 
     <header class="f1-header">
         <h1>¡Feliz Cumpleaños,Vayholine!</h1>
@@ -58,6 +67,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
