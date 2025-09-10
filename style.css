@@ -167,6 +167,60 @@ body::after {
     text-align: left;
 }
 
+/* Estilos para el menú de música */
+.music-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.music-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.music-button:hover {
+    transform: scale(1.1);
+}
+
+.playlist-menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    max-height: 200px;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.playlist-menu.hidden {
+    max-height: 0;
+}
+
+.song-item {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.song-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
 
 
 
