@@ -12,18 +12,27 @@
 </head>
 <body>
 
-    <div class="music-container">
-        <button id="music-btn" class="music-button"><i class="fas fa-music"></i></button>
-        <ul id="playlist-menu" class="playlist-menu hidden">
-            <li><button class="song-item" data-src="Just-Keep-Watching.mp3">Just Keep Watching</button></li>
-            <li><button class="song-item" data-src="Lose My Mind.mp3">Lose My Mind</button></li>
-            <li><button class="song-item" data-src="friday song.mp3">Friday mufasa</button></li>
-        </ul>
-        <audio id="background-music" src="" loop></audio>
-    </div>
+    <aside class="side-menu">
+        <div class="menu-items">
+            <div class="menu-item music-container">
+                <button id="music-btn" class="menu-button"><i class="fas fa-music"></i></button>
+                <ul id="playlist-menu" class="playlist-menu hidden">
+                    <li><button class="song-item" data-src="Just-Keep-Watching.mp3">Just Keep Watching</button></li>
+                    <li><button class="song-item" data-src="Lose My Mind.mp3">Lose My mind</button></li>
+                    <li><button class="song-item" data-src="friday song.mp3">friday song</button></li>
+                </ul>
+            </div>
+
+            <div class="menu-item gallery-container">
+                <button id="gallery-toggle-btn" class="menu-button"><i class="fas fa-car-side"></i></button>
+            </div>
+        </div>
+    </aside>
+
+    <audio id="background-music" src="" loop></audio>
 
     <header class="f1-header">
-        <h1>¡Feliz Cumpleaños,Vayholine!</h1>
+        <h1>¡Feliz Cumpleaños, VAYHOLINE!</h1>
     </header>
 
     <div class="background-container">
@@ -31,10 +40,6 @@
     </div>
 
     <main>
-        <button class="gallery-toggle-btn" id="gallery-toggle-btn">
-            <i class="fas fa-car-side"></i> Pilotos Favoritos
-        </button>
-
         <section class="personal-message">
             <p id="message-text"></p>
         </section>
@@ -45,11 +50,11 @@
             <span class="close-modal-btn" id="close-modal-btn">&times;</span>
             <div class="carousel-container">
                 <div class="carousel-item">
-                    <img src="ia-verstappen.png" alt="Vayholine con Verstappen">
+                    <img src="ia-verstappen.jpg" alt="Vayholine con Verstappen">
                     <p class="pit-board">Happy Birthday Champion!</p>
                 </div>
                 <div class="carousel-item">
-                    <img src="ia-leclerc.png" alt="Vayholine con Leclerc">
+                    <img src="ia-leclerc.jpg" alt="Vayholine con Leclerc">
                     <p class="pit-board">Te quiero más que a un Ferrari.</p>
                 </div>
                 <div class="carousel-item">
