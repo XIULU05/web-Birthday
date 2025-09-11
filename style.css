@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Evita el scroll innecesario */
+    overflow: hidden;
     font-family: 'Arial', sans-serif;
     color: white;
 }
@@ -28,7 +28,7 @@ body {
 .f1-header {
     text-align: center;
     padding: 20px 0;
-    background: rgba(0, 0, 0, 0.2); /* Fondo más translúcido */
+    background: rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 10;
     font-family: 'Orbitron', sans-serif;
@@ -39,54 +39,87 @@ h1 {
     font-size: 3em;
     text-transform: uppercase;
     letter-spacing: 5px;
-    color: #4dc2f4;
+    color: #ffd700; /* Color dorado */
     animation: neon-glow 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes neon-glow {
-    from { text-shadow: 0 0 10px #4dc2f4, 0 0 20px #4dc2f4; }
-    to { text-shadow: 0 0 20px #4dc2f4, 0 0 30px #4dc2f4, 0 0 40px #4dc2f4; }
+    from { text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
+    to { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700; }
 }
 
-/* Botón y menú de música */
-.music-container {
+/* Menú lateral plegable */
+.side-menu {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
     z-index: 100;
+    transition: width 0.3s ease;
+    width: 60px; /* Ancho inicial del menú colapsado */
 }
 
-.music-button {
-    background-color: rgba(0, 0, 0, 0.5);
+.side-menu:hover {
+    width: 200px; /* Ancho al pasar el mouse */
+}
+
+.menu-items {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px 0 0 10px;
+    padding: 10px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.menu-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.menu-button {
+    background-color: transparent;
+    border: none;
     color: white;
-    border: 2px solid white;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
     font-size: 1.5em;
-    transition: transform 0.3s ease;
+    cursor: pointer;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.music-button:hover {
+.menu-button:hover {
     transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
+.music-container, .gallery-container {
+    position: relative;
+}
+
+/* Estilos para el menú de música plegable */
 .playlist-menu {
     list-style: none;
     padding: 0;
-    margin-top: 10px;
+    margin: 0;
+    position: absolute;
+    top: 50px;
+    left: 0;
     background: rgba(0, 0, 0, 0.7);
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     max-height: 200px;
     transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    width: 200px;
 }
 
 .playlist-menu.hidden {
     max-height: 0;
     opacity: 0;
-    pointer-events: none; /* Desactiva los clics cuando está oculto */
+    pointer-events: none;
 }
 
 .song-item {
@@ -104,30 +137,9 @@ h1 {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Botón de galería */
-.gallery-toggle-btn {
-    position: fixed;
-    right: 20px;
-    top: 100px;
-    background: rgba(255, 0, 0, 0.8);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 95;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-}
-
 /* Estilos para el modal */
 .modal {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -176,7 +188,6 @@ h1 {
     text-decoration: none;
 }
 
-/* Galería de carrusel */
 .carousel-container {
     padding: 20px 0;
 }
@@ -195,7 +206,7 @@ h1 {
 
 .carousel-item img:hover {
     transform: scale(0.95);
-    border: 2px solid #4dc2f4;
+    border: 2px solid #ffd700; /* Borde dorado al pasar el cursor */
 }
 
 .pit-board {
@@ -227,8 +238,6 @@ h1 {
     font-size: 1.2em;
     text-align: left;
 }
-
-
 
 
 
