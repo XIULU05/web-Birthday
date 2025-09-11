@@ -137,6 +137,27 @@ h1 {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Estilo del botón de canción con miniatura */
+.song-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.song-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.song-item span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Estilos para el modal */
 .modal {
     display: none;
@@ -238,7 +259,6 @@ h1 {
     font-size: 1.2em;
     text-align: left;
 }
-
 
 
 
