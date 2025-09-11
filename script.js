@@ -6,17 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const music = document.getElementById('background-music');
     const songItems = document.querySelectorAll('.song-item');
 
-    musicBtn.addEventListener('click', () => {
+    musicBtn.addEventListener('click', (event) => {
+        event.stopPropagation(); // Evita que el clic se propague al documento
         playlistMenu.classList.toggle('hidden');
     });
 
     songItems.forEach(item => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (event) => {
+            event.stopPropagation();
             const songSrc = item.getAttribute('data-src');
             music.src = songSrc;
             music.play();
-            playlistMenu.classList.add('hidden'); // Cierra el menú después de seleccionar
+            playlistMenu.classList.add('hidden');
         });
+    });
+
+    // Cierra el menú de música si se hace clic en cualquier otro lugar
+    document.addEventListener('click', () => {
+        if (!playlistMenu.classList.contains('hidden')) {
+            playlistMenu.classList.add('hidden');
+        }
     });
 
     // 2. Funcionalidad de la Galería de Pilotos (Modal)
@@ -48,16 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (i < fullMessage.length) {
             messageText.innerHTML += fullMessage.charAt(i);
             i++;
-            setTimeout(typeWriter, 50); // Velocidad de escritura
+            setTimeout(typeWriter, 50);
         }
     }
 
     setTimeout(() => {
         typeWriter();
-    }, 2000); // Espera 2 segundos para iniciar la animación
+    }, 2000);
 });
-
-
 
 
 
