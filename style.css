@@ -79,6 +79,72 @@ body {
     color: #ffd700;
 }
 
+/* Música - menú de canciones */
+.music-container {
+    position: relative;
+}
+
+.playlist-menu {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 220px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+}
+
+.playlist-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    border-image: linear-gradient(45deg, #ffd700, #ff8c00, #e10600) 1;
+    animation: neon-border-glow 1.5s infinite alternate;
+}
+
+@keyframes neon-border-glow {
+    from {
+        box-shadow: 0 0 5px #ffd700, 0 0 10px #e10600;
+    }
+    to {
+        box-shadow: 0 0 10px #ffd700, 0 0 20px #e10600;
+    }
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 5px;
+}
+
+.song-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.song-item img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
 /* Contenido Principal */
 .f1-content {
     position: relative;
@@ -187,6 +253,7 @@ body {
     font-size: 1.2em;
     line-height: 1.6;
 }
+
 
 
 
