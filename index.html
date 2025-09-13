@@ -23,19 +23,17 @@
             <li><a href="#">My F1</a></li>
         </ul>
         <div class="nav-icons">
-            <button id="music-btn" class="nav-button"><i class="fas fa-music"></i></button>
-            <button class="nav-button" id="drivers-btn"><i class="fas fa-car-side"></i></button>
+            <div class="music-container">
+                <button id="music-btn" class="nav-button"><i class="fas fa-music"></i></button>
+                <ul id="playlist-menu" class="playlist-menu hidden">
+                    <li><button class="song-item" data-src="Just-Keep-Watching.mp3"><span>Just Keep Watching</span></button></li>
+                    <li><button class="song-item" data-src="Lose My Mind.mp3"><span>Lose My Mind</span></button></li>
+                    <li><button class="song-item" data-src="friday song.mp3"><span>Friday Song</span></button></li>
+                </ul>
+                <audio id="background-music" src="" loop></audio>
+            </div>
         </div>
     </nav>
-
-    <div class="music-container">
-        <ul id="playlist-menu" class="playlist-menu hidden">
-            <li><button class="song-item" data-src="Just-Keep-Watching.mp3"><span>Just Keep Watching</span></button></li>
-            <li><button class="song-item" data-src="Lose My Mind.mp3"><span>Lose My Mind</span></button></li>
-            <li><button class="song-item" data-src="friday song.mp3"><span>friday song</span></button></li>
-        </ul>
-        <audio id="background-music" src="" loop></audio>
-    </div>
 
     <main class="f1-content">
         <header class="main-header">
@@ -81,7 +79,7 @@
     <div class="background-container">
         <img src="fondo.png" alt="Fondo de Pista de F1" class="background-image">
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
