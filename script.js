@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Funcionalidad del Menú de Música (ahora en la navbar)
+    // 1. Funcionalidad del Menú de Música (navbar)
     const musicBtn = document.getElementById('music-btn');
     const playlistMenu = document.getElementById('playlist-menu');
     const music = document.getElementById('background-music');
@@ -10,11 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
         musicBtn.addEventListener('click', (event) => {
             event.stopPropagation();
             playlistMenu.classList.toggle('hidden');
+            playlistMenu.classList.toggle('active');
         });
 
         document.addEventListener('click', (event) => {
             if (!playlistMenu.contains(event.target) && event.target !== musicBtn) {
                 playlistMenu.classList.add('hidden');
+                playlistMenu.classList.remove('active');
             }
         });
 
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 music.src = songSrc;
                 music.play();
                 playlistMenu.classList.add('hidden');
+                playlistMenu.classList.remove('active');
             });
         });
     }
