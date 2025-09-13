@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const songItems = document.querySelectorAll('.song-item');
 
     musicBtn.addEventListener('click', (event) => {
-        event.stopPropagation(); // Evita que el clic se propague al documento
+        event.stopPropagation();
         playlistMenu.classList.toggle('hidden');
     });
 
@@ -28,20 +28,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. Funcionalidad de la Galería de Pilotos (Modal)
+    // 2. Funcionalidad de la Galería de Pilotos (Modal con Carrusel)
     const galleryToggleBtn = document.getElementById('gallery-toggle-btn');
     const galleryModal = document.getElementById('gallery-modal');
     const closeModalBtn = document.getElementById('close-modal-btn');
+    const carouselInner = document.getElementById('carousel-inner');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        carouselInner.style.transform = `translateX(${offset}%)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+        updateCarousel();
+    });
 
     galleryToggleBtn.addEventListener('click', () => {
         galleryModal.style.display = 'block';
+        updateCarousel(); // Para que siempre empiece mostrando la imagen correcta
     });
 
     closeModalBtn.addEventListener('click', () => {
         galleryModal.style.display = 'none';
     });
 
-    // Cierra el modal si se hace clic fuera de él
     window.addEventListener('click', (event) => {
         if (event.target === galleryModal) {
             galleryModal.style.display = 'none';
@@ -64,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         typeWriter();
     }, 2000);
+
 });
 
 
