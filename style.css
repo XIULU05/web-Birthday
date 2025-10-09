@@ -1,8 +1,9 @@
 :root {
     --f1-red: #e10600;
-    --f1-gold: #c7a700; /* Un dorado más profundo */
+    --f1-gold: #FFD700; /* Dorado brillante, ajustado a tu preferencia */
     --f1-dark-gray: #1a1a1a;
     --f1-light-gray: #333;
+    --f1-off-black: #0c0c0c; /* Un negro ligeramente menos intenso */
 }
 
 html {
@@ -14,41 +15,46 @@ body {
     padding: 0;
     font-family: 'Arial', sans-serif;
     color: white;
-    background-color: #000; /* Fondo negro sólido */
+    background-color: var(--f1-off-black); /* Fondo negro sólido para el body */
     overflow-x: hidden;
 }
 
 /* ========= Sección Héroe Actualizada ========= */
 .hero-section {
     height: 100vh;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2) 50%, rgba(0,0,0,0.6)), url('fondo.png'); /* Degradado ajustado */
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2) 50%, rgba(0,0,0,0.6)), url('fondo.png');
     background-size: cover;
-    background-position: center 70%; /* Ajusta la posición vertical de la imagen si es necesario */
+    background-position: center 70%;
     background-attachment: fixed;
     display: flex;
-    justify-content: center; /* Centramos horizontalmente */
+    justify-content: center; /* Centramos el contenido del header */
     align-items: flex-start; /* Alineamos el texto en la parte superior */
     position: relative;
     padding-top: 100px; /* Espacio para la navbar y para que el texto no toque el borde */
-    box-sizing: border-box; /* Incluir padding en el height */
+    box-sizing: border-box;
 }
 
 .main-header {
-    text-align: center; /* Centramos el texto dentro del header */
-    width: 100%; /* Ocupa todo el ancho disponible */
+    text-align: center;
+    width: 100%;
+    max-width: 800px; /* Delimita el ancho del texto */
     padding: 0 20px;
+    position: absolute; /* Para posicionar con más libertad */
+    top: 120px; /* Ajusta este valor para mover el texto arriba/abajo */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .main-header h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 4.5em; /* Un poco más grande para el impacto */
-    color: var(--f1-gold);
-    text-shadow: 0 0 15px var(--f1-gold), 0 0 30px var(--f1-red); /* Sombra con dorado y rojo */
+    font-size: 3.5em; /* Tamaño ajustado para la nueva posición */
+    color: var(--f1-gold); /* Usamos el nuevo dorado */
+    text-shadow: 0 0 10px var(--f1-gold), 0 0 20px rgba(255, 215, 0, 0.6);
     margin-bottom: 5px;
 }
 
 .main-header p {
-    font-size: 1.8em; /* Más grande y legible */
+    font-size: 1.5em; /* Tamaño ajustado */
     color: #ccc;
     margin-top: 0;
     font-weight: bold;
@@ -68,17 +74,16 @@ body {
 
 .fade-in-up {
     animation: fadeInUp 1s ease-out forwards;
-    opacity: 0; /* Oculto por defecto */
+    opacity: 0;
 }
 
 .fade-in-up.delay-1 {
     animation-delay: 0.5s;
 }
 
-
 /* Navbar estilo F1 */
 .f1-navbar {
-    background-color: rgba(0, 0, 0, 0.6); /* Más transparencia */
+    background-color: rgba(0, 0, 0, 0.7); /* Más transparencia para ver las franjas */
     backdrop-filter: blur(10px);
     color: white;
     display: flex;
@@ -91,8 +96,8 @@ body {
     border-bottom: 2px solid var(--f1-red);
     /* Franjas diagonales en la parte superior de la navbar */
     background-image: linear-gradient(135deg, transparent 49%, var(--f1-light-gray) 49%, var(--f1-light-gray) 51%, transparent 51%);
-    background-size: 20px 20px; /* Ajusta el tamaño de las franjas */
-    background-position: 0 0; /* Asegura que las franjas se vean en el top */
+    background-size: 20px 20px;
+    background-position: 0 0;
 }
 
 .f1-logo {
@@ -102,7 +107,7 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 15px; /* Menos espacio entre enlaces para un look más compacto */
     margin: 0;
     padding: 0;
 }
@@ -112,35 +117,24 @@ body {
     color: white;
     font-size: 1em;
     font-weight: bold;
-    padding: 15px 10px;
+    padding: 8px 15px; /* Relleno ajustado */
     position: relative;
-    transition: color 0.3s ease;
-    z-index: 2; /* Para que el texto esté sobre las franjas */
-    overflow: hidden; /* Importante para el efecto de la franja */
-}
-
-/* Estilo de Franjas para la Navegación */
-.nav-links a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%);
-    background-size: 20px 20px;
-    background-position: -20px 0; /* Empezamos fuera de vista */
-    transition: background-position 0.3s ease;
-    z-index: -1;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent; /* Borde transparente por defecto */
+    border-radius: 5px;
 }
 
 .nav-links a:hover {
-    color: white; /* El texto se mantiene blanco sobre el rojo */
+    color: var(--f1-gold); /* Dorado al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo muy sutil */
+    border-color: var(--f1-red); /* Borde rojo que se ilumina */
 }
 
-.nav-links a:hover::before {
-    background-position: 0 0; /* Mueve la franja a la vista */
+/* Eliminamos el pseudo-elemento ::before anterior que movía la franja roja */
+.nav-links a::before {
+    content: none;
 }
+
 
 .nav-button {
     background-color: transparent;
@@ -169,7 +163,7 @@ body {
     top: 50px;
     right: 0;
     width: 240px;
-    background: rgba(0, 0, 0, 0.8); /* Fondo más oscuro para el menú */
+    background: rgba(0, 0, 0, 0.85); /* Fondo más oscuro */
     backdrop-filter: blur(15px); /* Más blur */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
@@ -237,15 +231,20 @@ body {
     position: relative;
     z-index: 10;
     padding: 50px 20px;
-    background: rgba(0, 0, 0, 0.8); /* Fondo casi opaco para el contenido */
+    background: rgba(0, 0, 0, 0.85); /* Fondo semitransparente para ver el blur */
     backdrop-filter: blur(8px); /* Efecto cristalizado más marcado */
-    margin-top: -1px; /* Para asegurar que se "junte" con la sección héroe */
+    margin-top: -1px;
+    /* Nuevo fondo para el contenido */
+    background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('ruta/a/tu/imagen/de/pista-f1-difuminada.jpg'); /* << AQUÍ PONES LA RUTA DE TU IMAGEN DIFUMINADA >> */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Opcional: para efecto parallax */
 }
 
 /* Galería de Pilotos */
 .gallery-section {
     padding-top: 50px;
-    max-width: 1400px; /* Ancho máximo para el contenido */
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -255,13 +254,13 @@ body {
     text-align: center;
     margin-bottom: 40px;
     color: var(--f1-red);
-    text-shadow: 0 0 5px rgba(225, 6, 0, 0.5); /* Sombra para el título */
+    text-shadow: 0 0 5px rgba(225, 6, 0, 0.5);
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Min-width un poco más grande */
-    gap: 25px; /* Espacio entre tarjetas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -269,23 +268,22 @@ body {
 .gallery-card {
     position: relative;
     overflow: hidden;
-    border-radius: 12px; /* Bordes un poco más redondeados */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* Sombra más pronunciada */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
 }
 
 .gallery-card img {
     width: 100%;
-    height: 250px; /* Altura fija para las imágenes */
+    height: 100%; /* Volvemos a height: 100% para mantener proporción */
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
+    cursor: pointer; /* Indicamos que la imagen es clicable */
 }
 
 .gallery-card:hover {
-    transform: translateY(-8px); /* Elevación sutil */
+    transform: translateY(-8px);
     box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
 }
 
@@ -294,11 +292,11 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)); /* Degradado más oscuro */
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
     padding: 15px 10px;
     transform: translateY(100%);
     transition: transform 0.3s ease;
-    backdrop-filter: blur(8px); /* Blur más fuerte */
+    backdrop-filter: blur(8px);
     box-sizing: border-box;
 }
 
@@ -309,38 +307,39 @@ body {
 .pit-board {
     margin: 0;
     font-family: 'Courier New', monospace;
-    font-size: 1.1em; /* Texto un poco más grande */
+    font-size: 1.1em;
     font-weight: bold;
     color: white;
     text-align: center;
-    text-shadow: 0 0 5px black; /* Sombra para mejor lectura */
+    text-shadow: 0 0 5px black;
 }
 
 /* Sección de placeholder para Equipos */
 .section-placeholder {
-    height: 400px; /* Altura por defecto */
+    height: 400px;
     display: flex;
+    flex-direction: column; /* Alineamos verticalmente el título y el contenido */
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: rgba(0, 0, 0, 0.7); /* Fondo para esta sección */
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
-    margin: 50px 0;
+    margin: 50px auto; /* Centrado automático */
     max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .section-placeholder h2 {
     font-family: 'Orbitron', sans-serif;
-    color: var(--f1-light-gray); /* Un gris más sutil para el "próximamente" */
+    color: var(--f1-light-gray);
     font-size: 2.5em;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px; /* Espacio debajo del título */
 }
-
 
 /* Mensaje Personal */
 .personal-message-section {
@@ -348,8 +347,8 @@ body {
     text-align: center;
     max-width: 800px;
     margin: 50px auto;
-    background: rgba(0,0,0,0.7); /* Fondo más oscuro */
-    backdrop-filter: blur(10px); /* Más blur para el mensaje */
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
@@ -357,12 +356,80 @@ body {
 
 .personal-message-section p {
     font-family: 'Georgia', serif;
-    font-size: 1.3em; /* Un poco más grande */
+    font-size: 1.3em;
     line-height: 1.7;
     color: #eee;
 }
 
+/* ========= Lightbox Styles ========= */
+.lightbox-overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 200; /* Sit on top */
+    padding-top: 60px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    backdrop-filter: blur(10px); /* Para el efecto de cristalizado */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%; /* Ajusta el tamaño de la imagen abierta */
+    object-fit: contain; /* Para que la imagen quepa bien */
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); /* Sombra dorada */
+    animation: zoomIn 0.3s forwards;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.lightbox-caption {
+    margin: 15px auto 0 auto;
+    display: block;
+    width: 80%;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    font-size: 1.2em;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: var(--f1-red);
+    text-decoration: none;
+    cursor: pointer;
+}
 
 
 
