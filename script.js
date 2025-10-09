@@ -47,9 +47,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Se inicia la animación después de 2 segundos.
+        // Si quieres que inicie al hacer scroll a la sección, podemos añadir un IntersectionObserver.
         setTimeout(() => {
             typeWriter();
         }, 2000);
+    }
+
+    // 3. Funcionalidad del Lightbox para la Galería
+    const clickableImages = document.querySelectorAll('.gallery-card .clickable-image');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+
+    if (clickableImages.length > 0 && lightbox) {
+        clickableImages.forEach(image => {
+            image.addEventListener('click', () => {
+                lightbox.style.display = 'flex'; // Usamos flex para centrar
+                lightboxImg.src = image.src;
+                lightboxCaption.innerHTML = image.alt; // Usa el alt como caption
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        // Cierra el lightbox si se hace clic fuera de la imagen
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
     }
 });
 
