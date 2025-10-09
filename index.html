@@ -62,25 +62,25 @@
             <h2>Pilotos Favoritos</h2>
             <div class="gallery-grid">
                 <div class="gallery-card">
-                    <img src="ia-verstappen.png" alt="Vayholine con Verstappen">
+                    <img src="ia-verstappen.png" alt="Vayholine con Verstappen" class="clickable-image">
                     <div class="card-overlay">
                         <p class="pit-board">Happy Birthday Champion!</p>
                     </div>
                 </div>
                 <div class="gallery-card">
-                    <img src="ia-leclerc.png" alt="Vayholine con Leclerc">
+                    <img src="ia-leclerc.png" alt="Vayholine con Leclerc" class="clickable-image">
                     <div class="card-overlay">
                         <p class="pit-board">Te quiero más que a un Ferrari.</p>
                     </div>
                 </div>
                 <div class="gallery-card">
-                    <img src="ia-hamilton.jpg" alt="Vayholine con Hamilton">
+                    <img src="ia-hamilton.jpg" alt="Vayholine con Hamilton" class="clickable-image">
                     <div class="card-overlay">
                         <p class="pit-board">¡Eres la GOAT de mi vida!</p>
                     </div>
                 </div>
                 <div class="gallery-card">
-                    <img src="ia-russell.jpg" alt="Vayholine con Russell">
+                    <img src="ia-russell.jpg" alt="Vayholine con Russell" class="clickable-image">
                     <div class="card-overlay">
                         <p class="pit-board">Aceleras mi corazón.</p>
                     </div>
@@ -92,11 +92,16 @@
              <h2>Próximamente: Equipos Favoritos...</h2>
         </section>
 
-
         <section id="message" class="personal-message-section">
             <p id="message-text"></p>
         </section>
     </main>
+
+    <div id="lightbox" class="lightbox-overlay">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
