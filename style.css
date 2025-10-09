@@ -1,9 +1,9 @@
 :root {
     --f1-red: #e10600;
-    --f1-gold: #FFD700; /* Dorado brillante, ajustado a tu preferencia */
+    --f1-gold: #ffd700; /* Dorado brillante, revertido al anterior */
     --f1-dark-gray: #1a1a1a;
     --f1-light-gray: #333;
-    --f1-off-black: #0c0c0c; /* Un negro ligeramente menos intenso */
+    --f1-off-black: #0c0c0c;
 }
 
 html {
@@ -15,7 +15,7 @@ body {
     padding: 0;
     font-family: 'Arial', sans-serif;
     color: white;
-    background-color: var(--f1-off-black); /* Fondo negro sólido para el body */
+    background-color: var(--f1-off-black);
     overflow-x: hidden;
 }
 
@@ -27,20 +27,20 @@ body {
     background-position: center 70%;
     background-attachment: fixed;
     display: flex;
-    justify-content: center; /* Centramos el contenido del header */
-    align-items: flex-start; /* Alineamos el texto en la parte superior */
+    justify-content: center;
+    align-items: flex-start; /* Sigue alineado arriba, pero el h1 lo posicionamos absoluto */
     position: relative;
-    padding-top: 100px; /* Espacio para la navbar y para que el texto no toque el borde */
+    padding-top: 100px; /* Para que el contenido no quede debajo de la navbar */
     box-sizing: border-box;
 }
 
 .main-header {
     text-align: center;
     width: 100%;
-    max-width: 800px; /* Delimita el ancho del texto */
+    max-width: 800px;
     padding: 0 20px;
-    position: absolute; /* Para posicionar con más libertad */
-    top: 120px; /* Ajusta este valor para mover el texto arriba/abajo */
+    position: absolute;
+    top: 200px; /* Ajuste para colocar el título en la franja azul que señalaste */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -48,13 +48,13 @@ body {
 .main-header h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 3.5em; /* Tamaño ajustado para la nueva posición */
-    color: var(--f1-gold); /* Usamos el nuevo dorado */
+    color: var(--f1-gold);
     text-shadow: 0 0 10px var(--f1-gold), 0 0 20px rgba(255, 215, 0, 0.6);
-    margin-bottom: 5px;
+    margin-bottom: 5px; /* Quitado si solo hay un elemento, pero bueno para mantener */
 }
 
-.main-header p {
-    font-size: 1.5em; /* Tamaño ajustado */
+.main-header p { /* Este estilo ahora no se usa si eliminamos el <p> del HTML */
+    font-size: 1.5em;
     color: #ccc;
     margin-top: 0;
     font-weight: bold;
@@ -77,13 +77,15 @@ body {
     opacity: 0;
 }
 
-.fade-in-up.delay-1 {
+/* Eliminado si solo hay un elemento de texto. Si decides volver a poner el p, lo necesitarías. */
+/* .fade-in-up.delay-1 {
     animation-delay: 0.5s;
-}
+} */
+
 
 /* Navbar estilo F1 */
 .f1-navbar {
-    background-color: rgba(0, 0, 0, 0.7); /* Más transparencia para ver las franjas */
+    background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
     color: white;
     display: flex;
@@ -107,7 +109,7 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 15px; /* Menos espacio entre enlaces para un look más compacto */
+    gap: 30px; /* Vuelve a tener más espacio */
     margin: 0;
     padding: 0;
 }
@@ -117,24 +119,38 @@ body {
     color: white;
     font-size: 1em;
     font-weight: bold;
-    padding: 8px 15px; /* Relleno ajustado */
+    padding: 15px 10px; /* Vuelve al padding anterior */
     position: relative;
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-    border: 1px solid transparent; /* Borde transparente por defecto */
-    border-radius: 5px;
+    transition: color 0.3s ease;
+    z-index: 1; /* Para que el texto esté sobre la franja */
+    overflow: hidden; /* Importante para el efecto de la franja */
+    border: none; /* Quitamos el borde */
+    border-radius: 0; /* Quitamos el border-radius */
+}
+
+/* ========= Estilo de Franjas para la Navegación - Revertido al anterior ========= */
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    top: 50%; /* Centrado verticalmente */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--f1-red); /* Color de la franja */
+    transform: translateY(-50%) skewX(-25deg);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0; /* Oculto por defecto */
+    z-index: -1;
 }
 
 .nav-links a:hover {
-    color: var(--f1-gold); /* Dorado al pasar el ratón */
-    background-color: rgba(255, 255, 255, 0.05); /* Fondo muy sutil */
-    border-color: var(--f1-red); /* Borde rojo que se ilumina */
+    color: #fff; /* Se mantiene blanco al pasar el ratón */
 }
 
-/* Eliminamos el pseudo-elemento ::before anterior que movía la franja roja */
-.nav-links a::before {
-    content: none;
+.nav-links a:hover::before {
+    opacity: 1; /* Muestra la franja al pasar el ratón */
+    transform: translateY(-50%) skewX(-25deg) scaleX(1.1); /* Efecto de escala y movimiento */
 }
-
 
 .nav-button {
     background-color: transparent;
@@ -163,8 +179,8 @@ body {
     top: 50px;
     right: 0;
     width: 240px;
-    background: rgba(0, 0, 0, 0.85); /* Fondo más oscuro */
-    backdrop-filter: blur(15px); /* Más blur */
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease-in-out;
@@ -231,10 +247,9 @@ body {
     position: relative;
     z-index: 10;
     padding: 50px 20px;
-    background: rgba(0, 0, 0, 0.85); /* Fondo semitransparente para ver el blur */
-    backdrop-filter: blur(8px); /* Efecto cristalizado más marcado */
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
     margin-top: -1px;
-    /* ======== ¡CAMBIO REALIZADO AQUÍ! ======== */
     background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('segundo-fondo.jpg');
     background-size: cover;
     background-position: center;
@@ -275,11 +290,11 @@ body {
 
 .gallery-card img {
     width: 100%;
-    height: 100%; /* Volvemos a height: 100% para mantener proporción */
+    height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
-    cursor: pointer; /* Indicamos que la imagen es clicable */
+    cursor: pointer;
 }
 
 .gallery-card:hover {
@@ -318,18 +333,18 @@ body {
 .section-placeholder {
     height: 400px;
     display: flex;
-    flex-direction: column; /* Alineamos verticalmente el título y el contenido */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(8px);
-    margin: 50px auto; /* Centrado automático */
+    margin: 50px auto;
     max-width: 1400px;
     border-radius: 10px;
     padding: 20px;
     box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -338,7 +353,7 @@ body {
     color: var(--f1-light-gray);
     font-size: 2.5em;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px; /* Espacio debajo del título */
+    margin-bottom: 20px;
 }
 
 /* Mensaje Personal */
@@ -363,17 +378,17 @@ body {
 
 /* ========= Lightbox Styles ========= */
 .lightbox-overlay {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 200; /* Sit on top */
-    padding-top: 60px; /* Location of the box */
+    display: none;
+    position: fixed;
+    z-index: 200;
+    padding-top: 60px;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-    backdrop-filter: blur(10px); /* Para el efecto de cristalizado */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -383,10 +398,10 @@ body {
     margin: auto;
     display: block;
     max-width: 90%;
-    max-height: 80%; /* Ajusta el tamaño de la imagen abierta */
-    object-fit: contain; /* Para que la imagen quepa bien */
+    max-height: 80%;
+    object-fit: contain;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); /* Sombra dorada */
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
     animation: zoomIn 0.3s forwards;
 }
 
