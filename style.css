@@ -1,5 +1,12 @@
+:root {
+    --f1-red: #e10600;
+    --f1-gold: #c7a700; /* Un dorado más profundo */
+    --f1-dark-gray: #1a1a1a;
+    --f1-light-gray: #333;
+}
+
 html {
-    scroll-behavior: smooth; /* Habilita el scroll suave para toda la página */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -7,31 +14,71 @@ body {
     padding: 0;
     font-family: 'Arial', sans-serif;
     color: white;
-    /* Fondo negro con un patrón sutil de líneas diagonales */
-    background-color: #000;
-    background-image: repeating-linear-gradient(45deg, #111 0, #111 2px, transparent 0, transparent 50%);
-    background-size: 15px 15px;
+    background-color: #000; /* Fondo negro sólido */
     overflow-x: hidden;
 }
 
 /* ========= Sección Héroe Actualizada ========= */
 .hero-section {
     height: 100vh;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 50%), url('fondo.png');
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2) 50%, rgba(0,0,0,0.6)), url('fondo.png'); /* Degradado ajustado */
     background-size: cover;
     background-position: center 70%; /* Ajusta la posición vertical de la imagen si es necesario */
     background-attachment: fixed;
     display: flex;
-    /* Alinea el contenido a la esquina inferior izquierda */
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: center; /* Centramos horizontalmente */
+    align-items: flex-start; /* Alineamos el texto en la parte superior */
     position: relative;
-    padding: 40px;
+    padding-top: 100px; /* Espacio para la navbar y para que el texto no toque el borde */
+    box-sizing: border-box; /* Incluir padding en el height */
 }
+
+.main-header {
+    text-align: center; /* Centramos el texto dentro del header */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 0 20px;
+}
+
+.main-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4.5em; /* Un poco más grande para el impacto */
+    color: var(--f1-gold);
+    text-shadow: 0 0 15px var(--f1-gold), 0 0 30px var(--f1-red); /* Sombra con dorado y rojo */
+    margin-bottom: 5px;
+}
+
+.main-header p {
+    font-size: 1.8em; /* Más grande y legible */
+    color: #ccc;
+    margin-top: 0;
+    font-weight: bold;
+}
+
+/* Animaciones de entrada para el texto del héroe */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0; /* Oculto por defecto */
+}
+
+.fade-in-up.delay-1 {
+    animation-delay: 0.5s;
+}
+
 
 /* Navbar estilo F1 */
 .f1-navbar {
-    background-color: rgba(10, 10, 10, 0.8); /* Fondo ligeramente transparente */
+    background-color: rgba(0, 0, 0, 0.6); /* Más transparencia */
     backdrop-filter: blur(10px);
     color: white;
     display: flex;
@@ -41,7 +88,11 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 2px solid #e10600;
+    border-bottom: 2px solid var(--f1-red);
+    /* Franjas diagonales en la parte superior de la navbar */
+    background-image: linear-gradient(135deg, transparent 49%, var(--f1-light-gray) 49%, var(--f1-light-gray) 51%, transparent 51%);
+    background-size: 20px 20px; /* Ajusta el tamaño de las franjas */
+    background-position: 0 0; /* Asegura que las franjas se vean en el top */
 }
 
 .f1-logo {
@@ -64,31 +115,31 @@ body {
     padding: 15px 10px;
     position: relative;
     transition: color 0.3s ease;
-    z-index: 1; /* Para que el texto esté sobre la franja */
+    z-index: 2; /* Para que el texto esté sobre las franjas */
+    overflow: hidden; /* Importante para el efecto de la franja */
 }
 
-/* ========= Estilo de Franjas para la Navegación ========= */
+/* Estilo de Franjas para la Navegación */
 .nav-links a::before {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #333; /* Color de la franja */
-    transform: translateY(-50%) skewX(-25deg);
-    transition: background-color 0.3s ease, opacity 0.3s ease;
-    opacity: 0; /* Oculto por defecto */
+    background: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%);
+    background-size: 20px 20px;
+    background-position: -20px 0; /* Empezamos fuera de vista */
+    transition: background-position 0.3s ease;
     z-index: -1;
 }
 
 .nav-links a:hover {
-    color: #fff;
+    color: white; /* El texto se mantiene blanco sobre el rojo */
 }
 
 .nav-links a:hover::before {
-    opacity: 1;
-    background-color: #e10600; /* Color de la franja al pasar el ratón */
+    background-position: 0 0; /* Mueve la franja a la vista */
 }
 
 .nav-button {
@@ -102,7 +153,7 @@ body {
 }
 
 .nav-button:hover {
-    color: #ffd700;
+    color: var(--f1-gold);
 }
 
 /* Música - menú de canciones */
@@ -118,8 +169,8 @@ body {
     top: 50px;
     right: 0;
     width: 240px;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.8); /* Fondo más oscuro para el menú */
+    backdrop-filter: blur(15px); /* Más blur */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease-in-out;
@@ -132,16 +183,16 @@ body {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
-    border: 1px solid #ffd700;
+    border: 1px solid var(--f1-gold);
     animation: neon-border-glow 1.5s infinite alternate;
 }
 
 @keyframes neon-border-glow {
     from {
-        box-shadow: 0 0 5px #ffd700, 0 0 10px #e10600;
+        box-shadow: 0 0 5px var(--f1-gold), 0 0 10px var(--f1-red);
     }
     to {
-        box-shadow: 0 0 10px #ffd700, 0 0 20px #e10600;
+        box-shadow: 0 0 10px var(--f1-gold), 0 0 20px var(--f1-red);
     }
 }
 
@@ -175,7 +226,7 @@ body {
 .song-item span {
     font-size: 0.95em;
     font-weight: bold;
-    color: #ffd700;
+    color: var(--f1-gold);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -186,43 +237,31 @@ body {
     position: relative;
     z-index: 10;
     padding: 50px 20px;
-}
-
-.main-header {
-    text-align: left; /* Alineado a la izquierda */
-    padding: 20px;
-}
-
-.main-header h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3.5em; /* Ligeramente más pequeño para la esquina */
-    color: #ffd700;
-    text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
-}
-
-.main-header p {
-    font-size: 1.5em;
-    color: #ccc;
-    margin-top: -10px;
+    background: rgba(0, 0, 0, 0.8); /* Fondo casi opaco para el contenido */
+    backdrop-filter: blur(8px); /* Efecto cristalizado más marcado */
+    margin-top: -1px; /* Para asegurar que se "junte" con la sección héroe */
 }
 
 /* Galería de Pilotos */
 .gallery-section {
-    padding-top: 50px; /* Espacio extra arriba */
+    padding-top: 50px;
+    max-width: 1400px; /* Ancho máximo para el contenido */
+    margin: 0 auto;
 }
 
 .gallery-section h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 2em;
+    font-size: 2.2em;
     text-align: center;
-    margin-bottom: 30px;
-    color: #e10600;
+    margin-bottom: 40px;
+    color: var(--f1-red);
+    text-shadow: 0 0 5px rgba(225, 6, 0, 0.5); /* Sombra para el título */
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Min-width un poco más grande */
+    gap: 25px; /* Espacio entre tarjetas */
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -230,23 +269,24 @@ body {
 .gallery-card {
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 12px; /* Bordes un poco más redondeados */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6); /* Sombra más pronunciada */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
 }
 
 .gallery-card img {
     width: 100%;
-    height: 100%;
+    height: 250px; /* Altura fija para las imágenes */
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
 }
 
 .gallery-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+    transform: translateY(-8px); /* Elevación sutil */
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
 }
 
 .card-overlay {
@@ -254,11 +294,12 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
-    padding: 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)); /* Degradado más oscuro */
+    padding: 15px 10px;
     transform: translateY(100%);
     transition: transform 0.3s ease;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px); /* Blur más fuerte */
+    box-sizing: border-box;
 }
 
 .gallery-card:hover .card-overlay {
@@ -268,11 +309,38 @@ body {
 .pit-board {
     margin: 0;
     font-family: 'Courier New', monospace;
-    font-size: 1em;
+    font-size: 1.1em; /* Texto un poco más grande */
     font-weight: bold;
     color: white;
     text-align: center;
+    text-shadow: 0 0 5px black; /* Sombra para mejor lectura */
 }
+
+/* Sección de placeholder para Equipos */
+.section-placeholder {
+    height: 400px; /* Altura por defecto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7); /* Fondo para esta sección */
+    backdrop-filter: blur(8px);
+    margin: 50px 0;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.section-placeholder h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--f1-light-gray); /* Un gris más sutil para el "próximamente" */
+    font-size: 2.5em;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
 
 /* Mensaje Personal */
 .personal-message-section {
@@ -280,16 +348,20 @@ body {
     text-align: center;
     max-width: 800px;
     margin: 50px auto;
-    background: rgba(10,10,10,0.6);
-    backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.7); /* Fondo más oscuro */
+    backdrop-filter: blur(10px); /* Más blur para el mensaje */
     border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
 }
 
 .personal-message-section p {
     font-family: 'Georgia', serif;
-    font-size: 1.2em;
-    line-height: 1.6;
+    font-size: 1.3em; /* Un poco más grande */
+    line-height: 1.7;
+    color: #eee;
 }
+
 
 
 
