@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Animación de escritura del Mensaje Personal
     const messageText = document.getElementById('message-text');
+    // ** IMPORTANTE: ¡Cambia este mensaje por el tuyo personal! **
     const fullMessage = "Aquí va tu mensaje personal. Recuerda que este mensaje es lo que más va a valorar. Hazlo único y especial.";
 
     if (messageText) {
@@ -51,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     }
 });
-
 
 
 
