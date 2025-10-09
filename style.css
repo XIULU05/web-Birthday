@@ -234,11 +234,11 @@ body {
     background: rgba(0, 0, 0, 0.85); /* Fondo semitransparente para ver el blur */
     backdrop-filter: blur(8px); /* Efecto cristalizado más marcado */
     margin-top: -1px;
-    /* Nuevo fondo para el contenido */
-    background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('ruta/a/tu/imagen/de/pista-f1-difuminada.jpg'); /* << AQUÍ PONES LA RUTA DE TU IMAGEN DIFUMINADA >> */
+    /* ======== ¡CAMBIO REALIZADO AQUÍ! ======== */
+    background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('segundo-fondo.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Opcional: para efecto parallax */
+    background-attachment: fixed;
 }
 
 /* Galería de Pilotos */
