@@ -1,6 +1,7 @@
+
 :root {
     --f1-red: #e10600;
-    --f1-gold: #ffd700; /* Dorado brillante, revertido al anterior */
+    --f1-gold: #FFC000; /* Nuevo dorado/naranja vibrante, como en tu imagen */
     --f1-dark-gray: #1a1a1a;
     --f1-light-gray: #333;
     --f1-off-black: #0c0c0c;
@@ -28,9 +29,9 @@ body {
     background-attachment: fixed;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Sigue alineado arriba, pero el h1 lo posicionamos absoluto */
+    align-items: flex-start;
     position: relative;
-    padding-top: 100px; /* Para que el contenido no quede debajo de la navbar */
+    padding-top: 100px;
     box-sizing: border-box;
 }
 
@@ -40,25 +41,26 @@ body {
     max-width: 800px;
     padding: 0 20px;
     position: absolute;
-    top: 200px; /* Ajuste para colocar el título en la franja azul que señalaste */
+    top: 200px; /* Posición ajustada a tu referencia en la imagen */
     left: 50%;
     transform: translateX(-50%);
 }
 
 .main-header h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 3.5em; /* Tamaño ajustado para la nueva posición */
-    color: var(--f1-gold);
-    text-shadow: 0 0 10px var(--f1-gold), 0 0 20px rgba(255, 215, 0, 0.6);
-    margin-bottom: 5px; /* Quitado si solo hay un elemento, pero bueno para mantener */
+    font-size: 3.5em;
+    color: var(--f1-gold); /* Usamos el nuevo color vibrante */
+    text-shadow: 0 0 15px var(--f1-gold), 0 0 30px var(--f1-red); /* Sombra para el efecto de brillo */
+    margin-bottom: 5px;
 }
 
-.main-header p { /* Este estilo ahora no se usa si eliminamos el <p> del HTML */
+/* Eliminado si solo hay un elemento de texto. */
+/* .main-header p {
     font-size: 1.5em;
     color: #ccc;
     margin-top: 0;
     font-weight: bold;
-}
+} */
 
 /* Animaciones de entrada para el texto del héroe */
 @keyframes fadeInUp {
@@ -77,11 +79,6 @@ body {
     opacity: 0;
 }
 
-/* Eliminado si solo hay un elemento de texto. Si decides volver a poner el p, lo necesitarías. */
-/* .fade-in-up.delay-1 {
-    animation-delay: 0.5s;
-} */
-
 
 /* Navbar estilo F1 */
 .f1-navbar {
@@ -96,10 +93,11 @@ body {
     top: 0;
     z-index: 100;
     border-bottom: 2px solid var(--f1-red);
-    /* Franjas diagonales en la parte superior de la navbar */
-    background-image: linear-gradient(135deg, transparent 49%, var(--f1-light-gray) 49%, var(--f1-light-gray) 51%, transparent 51%);
-    background-size: 20px 20px;
-    background-position: 0 0;
+
+    /* ======= FRANAJAS ROJAS SUPERIORES DE LA NAVBAR (COMO EN TU FOTO) ======= */
+    background-image: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%);
+    background-size: 20px 20px; /* Tamaño de las franjas */
+    background-position: 0 0; /* Asegura que se vean en la parte superior */
 }
 
 .f1-logo {
@@ -109,7 +107,7 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 30px; /* Vuelve a tener más espacio */
+    gap: 30px;
     margin: 0;
     padding: 0;
 }
@@ -119,37 +117,34 @@ body {
     color: white;
     font-size: 1em;
     font-weight: bold;
-    padding: 15px 10px; /* Vuelve al padding anterior */
+    padding: 15px 10px;
     position: relative;
     transition: color 0.3s ease;
-    z-index: 1; /* Para que el texto esté sobre la franja */
-    overflow: hidden; /* Importante para el efecto de la franja */
-    border: none; /* Quitamos el borde */
-    border-radius: 0; /* Quitamos el border-radius */
+    z-index: 2; /* Para que el texto esté sobre el efecto del hover */
+    overflow: hidden; /* Necesario para el efecto de la franja que entra */
 }
 
-/* ========= Estilo de Franjas para la Navegación - Revertido al anterior ========= */
+/* ========= EFECTO HOVER DE LA NAV (REVERTIDO AL ANTERIOR) ========= */
 .nav-links a::before {
     content: '';
     position: absolute;
-    top: 50%; /* Centrado verticalmente */
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--f1-red); /* Color de la franja */
-    transform: translateY(-50%) skewX(-25deg);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0; /* Oculto por defecto */
+    background: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%);
+    background-size: 20px 20px;
+    background-position: -20px 0; /* Empezamos fuera de vista */
+    transition: background-position 0.3s ease;
     z-index: -1;
 }
 
 .nav-links a:hover {
-    color: #fff; /* Se mantiene blanco al pasar el ratón */
+    color: white; /* El texto se mantiene blanco sobre el rojo */
 }
 
 .nav-links a:hover::before {
-    opacity: 1; /* Muestra la franja al pasar el ratón */
-    transform: translateY(-50%) skewX(-25deg) scaleX(1.1); /* Efecto de escala y movimiento */
+    background-position: 0 0; /* Mueve la franja a la vista */
 }
 
 .nav-button {
@@ -445,8 +440,5 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
-
-
-
 
 
