@@ -14,13 +14,13 @@
 
     <nav class="f1-navbar">
         <div class="logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/1200px-F1.svg.png" alt="F1 Logo" class="f1-logo">
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/1200px-F1.svg.png" alt="F1 Logo" class="f1-logo"></a>
         </div>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Drivers</a></li>
-            <li><a href="#">Teams</a></li>
-            <li><a href="#">My F1</a></li>
+            <li><a href="#drivers">Drivers</a></li>
+            <li><a href="#teams">Teams</a></li>
+            <li><a href="#message">My F1</a></li>
         </ul>
         <div class="nav-icons">
             <div class="music-container">
@@ -50,7 +50,7 @@
         </div>
     </nav>
 
-    <section class="hero-section">
+    <section id="home" class="hero-section">
         <header class="main-header">
             <h1>¡FELIZ CUMPLEAÑOS, VAYHOLINE!</h1>
             <p>El campeón de mi vida.</p>
@@ -58,7 +58,7 @@
     </section>
 
     <main class="f1-content">
-        <section class="gallery-section">
+        <section id="drivers" class="gallery-section">
             <h2>Pilotos Favoritos</h2>
             <div class="gallery-grid">
                 <div class="gallery-card">
@@ -88,7 +88,12 @@
             </div>
         </section>
 
-        <section class="personal-message-section">
+        <section id="teams" style="height: 400px; display: flex; align-items: center; justify-content: center;">
+             <h2 style="color: #555;">Próximamente: Equipos Favoritos...</h2>
+        </section>
+
+
+        <section id="message" class="personal-message-section">
             <p id="message-text"></p>
         </section>
     </main>
@@ -96,7 +101,6 @@
     <script src="script.js"></script>
 </body>
 </html>
-
 
 
 
