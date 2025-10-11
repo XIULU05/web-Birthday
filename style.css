@@ -1,9 +1,8 @@
-
 :root {
     --f1-red: #e10600;
-    --f1-gold: #FFC000; /* Nuevo dorado/naranja vibrante, como en tu imagen */
+    --f1-gold: #FFC000; /* Dorado/naranja vibrante */
     --f1-dark-gray: #1a1a1a;
-    --f1-light-gray: #333;
+    --f1-light-gray: #333; /* Gris claro/oscuro para armonizar */
     --f1-off-black: #0c0c0c;
 }
 
@@ -49,36 +48,10 @@ body {
 .main-header h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 3.5em;
-    color: var(--f1-gold); /* Usamos el nuevo color vibrante */
-    text-shadow: 0 0 15px var(--f1-gold), 0 0 30px var(--f1-red); /* Sombra para el efecto de brillo */
+    color: var(--f1-gold);
+    text-shadow: 0 0 15px var(--f1-gold), 0 0 30px var(--f1-red);
     margin-bottom: 5px;
 }
-
-/* Eliminado si solo hay un elemento de texto. */
-/* .main-header p {
-    font-size: 1.5em;
-    color: #ccc;
-    margin-top: 0;
-    font-weight: bold;
-} */
-
-/* Animaciones de entrada para el texto del héroe */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in-up {
-    animation: fadeInUp 1s ease-out forwards;
-    opacity: 0;
-}
-
 
 /* Navbar estilo F1 */
 .f1-navbar {
@@ -94,10 +67,10 @@ body {
     z-index: 100;
     border-bottom: 2px solid var(--f1-red);
 
-    /* ======= FRANAJAS ROJAS SUPERIORES DE LA NAVBAR (COMO EN TU FOTO) ======= */
-    background-image: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%);
-    background-size: 20px 20px; /* Tamaño de las franjas */
-    background-position: 0 0; /* Asegura que se vean en la parte superior */
+    /* ======= FRANAJAS DIAGONALES SUPERIORES DE LA NAVBAR - AHORA GRISÁCEAS ======= */
+    background-image: linear-gradient(135deg, transparent 49%, var(--f1-light-gray) 49%, var(--f1-light-gray) 51%, transparent 51%); /* Color grisáceo */
+    background-size: 20px 20px;
+    background-position: 0 0;
 }
 
 .f1-logo {
@@ -120,11 +93,11 @@ body {
     padding: 15px 10px;
     position: relative;
     transition: color 0.3s ease;
-    z-index: 2; /* Para que el texto esté sobre el efecto del hover */
-    overflow: hidden; /* Necesario para el efecto de la franja que entra */
+    z-index: 2;
+    overflow: hidden;
 }
 
-/* ========= EFECTO HOVER DE LA NAV (REVERTIDO AL ANTERIOR) ========= */
+/* ========= EFECTO HOVER DE LA NAV (SE MANTIENE ROJO) ========= */
 .nav-links a::before {
     content: '';
     position: absolute;
@@ -132,19 +105,19 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%);
+    background: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%); /* Se mantiene ROJO */
     background-size: 20px 20px;
-    background-position: -20px 0; /* Empezamos fuera de vista */
+    background-position: -20px 0;
     transition: background-position 0.3s ease;
     z-index: -1;
 }
 
 .nav-links a:hover {
-    color: white; /* El texto se mantiene blanco sobre el rojo */
+    color: white;
 }
 
 .nav-links a:hover::before {
-    background-position: 0 0; /* Mueve la franja a la vista */
+    background-position: 0 0;
 }
 
 .nav-button {
@@ -440,5 +413,3 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
-
-
