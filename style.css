@@ -40,7 +40,7 @@ body {
     max-width: 800px;
     padding: 0 20px;
     position: absolute;
-    top: 200px; /* Posición ajustada a tu referencia en la imagen */
+    top: 120px; /* ¡AJUSTE REALIZADO AQUÍ! Para subir el texto a la zona que marcaste */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -52,6 +52,24 @@ body {
     text-shadow: 0 0 15px var(--f1-gold), 0 0 30px var(--f1-red);
     margin-bottom: 5px;
 }
+
+/* Animaciones de entrada para el texto del héroe */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+}
+
 
 /* Navbar estilo F1 */
 .f1-navbar {
@@ -67,8 +85,8 @@ body {
     z-index: 100;
     border-bottom: 2px solid var(--f1-red);
 
-    /* ======= FRANAJAS DIAGONALES SUPERIORES DE LA NAVBAR - AHORA GRISÁCEAS ======= */
-    background-image: linear-gradient(135deg, transparent 49%, var(--f1-light-gray) 49%, var(--f1-light-gray) 51%, transparent 51%); /* Color grisáceo */
+    /* Franjas diagonales superiores de la navbar - ahora grisáceas */
+    background-image: linear-gradient(135deg, transparent 49%, var(--f1-light-gray) 49%, var(--f1-light-gray) 51%, transparent 51%);
     background-size: 20px 20px;
     background-position: 0 0;
 }
@@ -97,7 +115,7 @@ body {
     overflow: hidden;
 }
 
-/* ========= EFECTO HOVER DE LA NAV (SE MANTIENE ROJO) ========= */
+/* Efecto hover de la nav (se mantiene rojo) */
 .nav-links a::before {
     content: '';
     position: absolute;
@@ -105,7 +123,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%); /* Se mantiene ROJO */
+    background: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%);
     background-size: 20px 20px;
     background-position: -20px 0;
     transition: background-position 0.3s ease;
