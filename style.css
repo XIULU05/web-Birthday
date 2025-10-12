@@ -321,11 +321,45 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.image-container {
+    position: relative;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    overflow: hidden; /* Para que el overlay no se salga */
+}
+
 .timeline-image {
     width: 100%;
-    border-radius: 6px;
-    margin-bottom: 15px;
+    display: block;
     cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+.zoom-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2.5em;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Para que no interfiera con el clic en la imagen */
+}
+
+.image-container:hover .timeline-image {
+    filter: brightness(0.7);
+}
+
+.image-container:hover .zoom-icon {
+    opacity: 1;
 }
 
 .timeline-content h2 {
@@ -578,6 +612,3 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
-
-
-
