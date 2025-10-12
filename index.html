@@ -14,10 +14,11 @@
 
     <nav class="f1-navbar">
         <div class="logo">
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/1200px-F1.svg.png" alt="F1 Logo" class="f1-logo"></a>
-</div>
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/1200px-F1.svg.png" alt="F1 Logo" class="f1-logo"></a>
+        </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
+            <li><a href="#nuestra-carrera">Nuestra Carrera</a></li>
             <li><a href="#drivers">Drivers</a></li>
             <li><a href="#teams">Teams</a></li>
             <li><a href="#message">My F1</a></li>
@@ -57,10 +58,53 @@
     </section>
 
     <main class="f1-content">
+
+        <section id="nuestra-carrera" class="timeline-section">
+            <h2>Nuestra Línea de Carrera</h2>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <img src="Hito1.jpg" alt="Licenciado y Licenciada" class="timeline-image clickable-image" data-gallery="adicional1.jpg,adicional1.2.jpg">
+                        <h3>Cuarto de Secundaria</h3>
+                        <h2>La Conexión Virtual</h2>
+                        <p>Donde todo comenzó. Entre clases virtuales y apodos únicos, se formó una amistad que sería el punto de partida de nuestra historia.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <img src="Hito2.jpg" alt="Primer encuentro en persona" class="timeline-image clickable-image" data-gallery="Hito2.1.jpg,Hito2.2.jpg">
+                        <h3>Quinto de Secundaria</h3>
+                        <h2>El Encuentro</h2>
+                        <p>El salto de la pantalla a la realidad. Nuestro primer encuentro en persona, donde la amistad se convirtió en algo mucho más tangible y especial.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <img src="Hito3.jpg" alt="Captura del mensaje" class="timeline-image clickable-image">
+                        <h3>Sexto de Secundaria</h3>
+                        <h2>El Punto de Inflexión</h2>
+                        <p>Un mensaje que lo cambió todo. El reinicio de nuestra comunicación y el verdadero comienzo de un nuevo capítulo para nosotros.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <img src="Hito4.jpg" alt="Emperador y Emperatriz" class="timeline-image clickable-image" data-gallery="Hito4.1.jpg,Hito4.2.jpg">
+                        <h3>El Gran Evento</h3>
+                        <h2>La Coronación</h2>
+                        <p>Nombrados Emperador y Emperatriz. Nuestro primer gran triunfo como pareja, brillando como los protagonistas de la noche.</p>
+                    </div>
+                </div>
+                 
+            </div>
+        </section>
+
         <section id="drivers" class="gallery-section">
             <h2>Pilotos Favoritos</h2>
             <div class="gallery-grid">
-                
                 <div class="gallery-card">
                     <img src="placeholder-driver.png" alt="Vayholine con Lando Norris" class="clickable-image">
                     <div class="card-overlay">
@@ -76,7 +120,7 @@
                 </div>
 
                 <div class="gallery-card">
-                    <img src="ia-leclerc.png" alt="Vayholine con Charles Leclerc" class="clickable-image">
+                    <img src="placeholder-driver.png" alt="Vayholine con Charles Leclerc" class="clickable-image">
                     <div class="card-overlay">
                         <p class="pit-board">"Daghe, Ragazzi! Que tengas un cumpleaños increíble."</p>
                     </div>
@@ -90,7 +134,7 @@
                 </div>
 
                 <div class="gallery-card">
-                    <img src="ia-verstappen.png" alt="Vayholine con Max Emilian Verstappen" class="clickable-image">
+                    <img src="placeholder-driver.png" alt="Vayholine con Max Emilian Verstappen" class="clickable-image">
                     <div class="card-overlay">
                         <p class="pit-board">"Simply lovely! Disfruta tu día. ¡Felicitaciones!"</p>
                     </div>
@@ -144,7 +188,6 @@
                         <p class="pit-board">"Luchando hasta el final. ¡Feliz cumpleaños, Vayholine!"</p>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -159,13 +202,18 @@
 
     <div id="lightbox" class="lightbox-overlay">
         <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-gallery-container">
+            <button class="lightbox-nav prev">&#10094;</button>
+            <img class="lightbox-content" id="lightbox-img">
+            <button class="lightbox-nav next">&#10095;</button>
+        </div>
         <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
