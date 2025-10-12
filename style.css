@@ -40,7 +40,7 @@ body {
     max-width: 800px;
     padding: 0 20px;
     position: absolute;
-    top: 2px; /* ¡AJUSTE REALIZADO AQUÍ! Para subir el texto a la zona que marcaste */
+    top: 2px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -84,8 +84,6 @@ body {
     top: 0;
     z-index: 100;
     border-bottom: 2px solid var(--f1-red);
-
-    /* Franjas diagonales superiores de la navbar - ahora grisáceas */
     background-image: linear-gradient(135deg, transparent 49%, var(--f1-light-gray) 49%, var(--f1-light-gray) 51%, transparent 51%);
     background-size: 20px 20px;
     background-position: 0 0;
@@ -115,7 +113,6 @@ body {
     overflow: hidden;
 }
 
-/* Efecto hover de la nav (se mantiene rojo) */
 .nav-links a::before {
     content: '';
     position: absolute;
@@ -241,6 +238,118 @@ body {
     background-position: center;
     background-attachment: fixed;
 }
+
+/* ========= NUEVOS ESTILOS: LÍNEA DE TIEMPO ========= */
+.timeline-section {
+    padding: 80px 0;
+}
+
+.timeline-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--f1-red);
+    text-shadow: 0 0 5px rgba(225, 6, 0, 0.5);
+}
+
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--f1-light-gray);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.timeline-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--f1-off-black);
+    border: 3px solid var(--f1-red);
+    top: 30px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -10px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(10px);
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-image {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.timeline-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--f1-gold);
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.timeline-content h3 {
+    font-size: 1em;
+    color: #aaa;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.timeline-content p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin: 0;
+}
+
 
 /* Galería de Pilotos */
 .gallery-section {
@@ -380,16 +489,54 @@ body {
     flex-direction: column;
 }
 
+.lightbox-gallery-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 80%;
+}
+
 .lightbox-content {
     margin: auto;
     display: block;
-    max-width: 90%;
-    max-height: 80%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     border-radius: 10px;
     box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
     animation: zoomIn 0.3s forwards;
 }
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2em;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 210;
+    display: none; /* Ocultos por defecto */
+}
+
+.lightbox-nav:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-nav.prev {
+    left: 10px;
+}
+
+.lightbox-nav.next {
+    right: 10px;
+}
+
 
 @keyframes zoomIn {
     from {
@@ -431,5 +578,6 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
 
 
