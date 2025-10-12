@@ -34,54 +34,113 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Animación de escritura del Mensaje Personal
     const messageText = document.getElementById('message-text');
-    // ** IMPORTANTE: ¡Cambia este mensaje por el tuyo personal! **
     const fullMessage = "Aquí va tu mensaje personal. Recuerda que este mensaje es lo que más va a valorar. Hazlo único y especial.";
 
     if (messageText) {
-        let i = 0;
-        function typeWriter() {
-            if (i < fullMessage.length) {
-                messageText.innerHTML += fullMessage.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
-        }
-
-        // Se inicia la animación después de 2 segundos.
-        // Si quieres que inicie al hacer scroll a la sección, podemos añadir un IntersectionObserver.
-        setTimeout(() => {
-            typeWriter();
-        }, 2000);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    let i = 0;
+                    function typeWriter() {
+                        if (i < fullMessage.length) {
+                            messageText.innerHTML += fullMessage.charAt(i);
+                            i++;
+                            setTimeout(typeWriter, 50);
+                        }
+                    }
+                    typeWriter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        observer.observe(messageText);
     }
 
-    // 3. Funcionalidad del Lightbox para la Galería
-    const clickableImages = document.querySelectorAll('.gallery-card .clickable-image');
+    // 3. Funcionalidad del Lightbox (Mejorado con Galería)
+    const clickableImages = document.querySelectorAll('.clickable-image');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
     const lightboxClose = document.querySelector('.lightbox-close');
+    const prevButton = document.querySelector('.lightbox-nav.prev');
+    const nextButton = document.querySelector('.lightbox-nav.next');
+
+    let currentGallery = [];
+    let currentIndex = 0;
+
+    function showImage(index) {
+        lightboxImg.src = currentGallery[index];
+        const tempImage = new Image();
+        tempImage.src = currentGallery[index];
+        tempImage.onload = () => {
+             lightboxCaption.innerHTML = tempImage.alt || `Imagen ${index + 1} de ${currentGallery.length}`;
+        };
+    }
 
     if (clickableImages.length > 0 && lightbox) {
         clickableImages.forEach(image => {
             image.addEventListener('click', () => {
-                lightbox.style.display = 'flex'; // Usamos flex para centrar
-                lightboxImg.src = image.src;
-                lightboxCaption.innerHTML = image.alt; // Usa el alt como caption
+                const mainImageSrc = image.src;
+                const galleryData = image.getAttribute('data-gallery');
+                currentGallery = [mainImageSrc];
+                if (galleryData) {
+                    currentGallery = currentGallery.concat(galleryData.split(','));
+                }
+
+                currentIndex = 0;
+                lightbox.style.display = 'flex';
+                showImage(currentIndex);
+
+                if (currentGallery.length > 1) {
+                    prevButton.style.display = 'block';
+                    nextButton.style.display = 'block';
+                } else {
+                    prevButton.style.display = 'none';
+                    nextButton.style.display = 'none';
+                }
             });
         });
 
-        lightboxClose.addEventListener('click', () => {
+        const closeLightbox = () => {
             lightbox.style.display = 'none';
-        });
+        };
 
-        // Cierra el lightbox si se hace clic fuera de la imagen
+        lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (event) => {
             if (event.target === lightbox) {
-                lightbox.style.display = 'none';
+                closeLightbox();
             }
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : currentGallery.length - 1;
+            showImage(currentIndex);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex < currentGallery.length - 1) ? currentIndex + 1 : 0;
+            showImage(currentIndex);
+        });
+    }
+
+    // 4. Animación de la Línea de Tiempo al hacer Scroll
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    if (timelineItems.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        timelineItems.forEach(item => {
+            observer.observe(item);
         });
     }
 });
+
 
 
 
