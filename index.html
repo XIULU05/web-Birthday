@@ -1,247 +1,617 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños Vayholine!</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-</head>
-<body>
+:root {
+    --f1-red: #e10600;
+    --f1-gold: #FFC000; /* Dorado/naranja vibrante */
+    --f1-dark-gray: #1a1a1a;
+    --f1-light-gray: #333; /* Gris claro/oscuro para armonizar */
+    --f1-off-black: #0c0c0c;
+}
 
-    <nav class="f1-navbar">
-        <div class="logo">
-            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/1200px-F1.svg.png" alt="F1 Logo" class="f1-logo"></a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#nuestra-carrera">Nuestra Carrera</a></li>
-            <li><a href="#drivers">Drivers</a></li>
-            <li><a href="#teams">Teams</a></li>
-            <li><a href="#message">My F1</a></li>
-        </ul>
-        <div class="nav-icons">
-            <div class="music-container">
-                <button id="music-btn" class="nav-button"><i class="fas fa-music"></i></button>
-                <ul id="playlist-menu" class="playlist-menu hidden">
-                    <li>
-                        <button class="song-item" data-src="Just-Keep-Watching.mp3">
-                            <img src="tate.png" alt="Just Keep Watching">
-                            <span>Just Keep Watching</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="song-item" data-src="Lose My Mind.mp3">
-                            <img src="lose.png" alt="Lose My Mind">
-                            <span>Lose My Mind</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button class="song-item" data-src="Friday Song.mp3">
-                            <img src="friday.png" alt="Friday Song">
-                            <span>Friday Song</span>
-                        </button>
-                    </li>
-                </ul>
-                <audio id="background-music" src="" loop></audio>
-            </div>
-        </div>
-    </nav>
+html {
+    scroll-behavior: smooth;
+}
 
-    <section id="home" class="hero-section">
-        <header class="main-header">
-            <h1 class="fade-in-up">¡FELIZ CUMPLEAÑOS, VAYHOLINE!</h1>
-        </header>
-    </section>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background-color: var(--f1-off-black);
+    overflow-x: hidden;
+}
 
-    <main class="f1-content">
+/* ========= Sección Héroe Actualizada ========= */
+.hero-section {
+    height: 100vh;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2) 50%, rgba(0,0,0,0.6)), url('fondo.png');
+    background-size: cover;
+    background-position: center 70%;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    padding-top: 100px;
+    box-sizing: border-box;
+}
 
-        <section id="nuestra-carrera" class="timeline-section">
-            <h2>Nuestra Línea de Carrera</h2>
-            <div class="timeline">
+.main-header {
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="image-container">
-                            <img src="Hito1.png" alt="Licenciado y Licenciada" class="timeline-image clickable-image" data-gallery="adicional1.jpg,adicional1.2.jpg">
-                            <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <h3>Cuarto de Secundaria</h3>
-                        <h2>La Conexión Virtual</h2>
-                        <p>En medio de un mundo en pausa, nació una conexión única. No nos veíamos, pero nos leíamos. Éramos 'Licenciado y Licenciada', dos amigos forjando un lazo a través de una pantalla, sin saber que era la primera vuelta de nuestra carrera juntos.</p>
-                    </div>
-                </div>
+.main-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5em;
+    color: var(--f1-gold);
+    text-shadow: 0 0 15px var(--f1-gold), 0 0 30px var(--f1-red);
+    margin-bottom: 5px;
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                         <div class="image-container">
-                            <img src="Hito2.jpg" alt="Primer encuentro en persona" class="timeline-image clickable-image" data-gallery="Hito2.1.jpg,Hito2.2.jpg">
-                            <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <h3>Quinto de Secundaria</h3>
-                        <h2>El Encuentro</h2>
-                        <p>El salto de la pantalla a la realidad. El impacto fue instantáneo. 'Wow, en serio eres tú'. En ese momento, la amistad que conocíamos encontró una nueva dimensión y se convirtió en la base sólida de todo lo que vendría.</p>
-                    </div>
-                </div>
+/* Animaciones de entrada para el texto del héroe */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="image-container">
-                            <img src="Hito3.jpg" alt="Captura del mensaje" class="timeline-image clickable-image">
-                            <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <h3>Sexto de Secundaria</h3>
-                        <h2>El Punto de Inflexión</h2>
-                        <p>A veces, el silencio habla más fuerte. Después de un 'no' y meses de distancia, un mensaje lo cambió todo. Fue el reinicio, la decisión de ver qué pasaba, y se convirtió en una de las mejores decisiones de nuestras vidas.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="image-container">
-                            <img src="Hito4.png" alt="Emperador y Emperatriz" class="timeline-image clickable-image" data-gallery="Hito4.1.jpg,Hito4.2.png">
-                            <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <h3>El Gran Evento</h3>
-                        <h2>La Coronación</h2>
-                        <p>El universo nos dio una señal. Nombrados 'Emperador y Emperatriz', fuimos los protagonistas de la noche. Un momento que se sintió como un cuento de hadas, una confirmación pública de que estábamos destinados a brillar juntos.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="image-container">
-                            <img src="Hito5.jpg" alt="Nuestra Primera Aventura" class="timeline-image clickable-image" data-gallery="adicional5.1.jpg,adicional5.2.jpg">
-                            <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
-                        </div>
-                        <h3>Post-Graduación</h3>
-                        <h2>Nuestra Primera Aventura</h2>
-                        <p>El sol, el mar y el inicio de nuestras memorias como pareja. Este viaje a la playa fue más que una simple cita; fue un momento mágico, la prueba de que la felicidad era esto: explorar el mundo, pero siempre contigo al lado.</p>
-                    </div>
-                </div>
-                 
-            </div>
-        </section>
-
-        <section id="drivers" class="gallery-section">
-            <h2>Pilotos Favoritos</h2>
-            <div class="gallery-grid">
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con Lando Norris" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"It's lights out and away we go! Feliz cumpleaños."</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con Sir Lewis Hamilton" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Still I Rise. Mis mejores deseos en tu día, campeona."</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="ia-leclerc.png" alt="Vayholine con Charles Leclerc" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Daghe, Ragazzi! Que tengas un cumpleaños increíble."</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con Andrea Kimi Antonelli" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"El futuro es rápido. ¡Feliz cumpleaños, Vayholine!"</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="ia-Verstappen.png" alt="Vayholine con Max Emilian Verstappen" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Simply lovely! Disfruta tu día. ¡Felicitaciones!"</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con Sergio Pérez" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Checo is a legend! A celebrar. ¡Feliz cumpleaños!"</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con Carlos Sainz" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Smooth Operator. Que tengas un día perfecto. ¡Felicidades!"</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con Oscar Jack Piastri" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Calma y precisión. Te deseo un feliz cumpleaños."</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con George Russell" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Facts. Es un día perfecto para celebrar. ¡Felicidades!"</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con Oliver Bearman" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Aprovechando la oportunidad. ¡Feliz cumpleaños!"</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con Alex Albon" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Maximizando el potencial. ¡Que sea un gran día! Felicidades."</p>
-                    </div>
-                </div>
-
-                <div class="gallery-card">
-                    <img src="placeholder-driver.png" alt="Vayholine con Esteban Ocon" class="clickable-image">
-                    <div class="card-overlay">
-                        <p class="pit-board">"Luchando hasta el final. ¡Feliz cumpleaños, Vayholine!"</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="teams" class="section-placeholder">
-             <h2>Próximamente: Equipos Favoritos...</h2>
-        </section>
-
-        <section id="message" class="personal-message-section">
-            <p id="message-text"></p>
-        </section>
-    </main>
-
-    <div id="lightbox" class="lightbox-overlay">
-        <span class="lightbox-close">&times;</span>
-        <div class="lightbox-gallery-container">
-            <button class="lightbox-nav prev">&#10094;</button>
-            <img class="lightbox-content" id="lightbox-img">
-            <button class="lightbox-nav next">&#10095;</button>
-        </div>
-        <div id="lightbox-caption" class="lightbox-caption"></div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+.fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+}
 
 
+/* Navbar estilo F1 */
+.f1-navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--f1-red);
+    background-image: linear-gradient(135deg, transparent 49%, var(--f1-light-gray) 49%, var(--f1-light-gray) 51%, transparent 51%);
+    background-size: 20px 20px;
+    background-position: 0 0;
+}
+
+.f1-logo {
+    height: 40px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 15px 10px;
+    position: relative;
+    transition: color 0.3s ease;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 49%, var(--f1-red) 49%, var(--f1-red) 51%, transparent 51%);
+    background-size: 20px 20px;
+    background-position: -20px 0;
+    transition: background-position 0.3s ease;
+    z-index: -1;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-links a:hover::before {
+    background-position: 0 0;
+}
+
+.nav-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin-left: 15px;
+}
+
+.nav-button:hover {
+    color: var(--f1-gold);
+}
+
+/* Música - menú de canciones */
+.music-container {
+    position: relative;
+}
+
+.playlist-menu {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 240px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+}
+
+.playlist-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    border: 1px solid var(--f1-gold);
+    animation: neon-border-glow 1.5s infinite alternate;
+}
+
+@keyframes neon-border-glow {
+    from {
+        box-shadow: 0 0 5px var(--f1-gold), 0 0 10px var(--f1-red);
+    }
+    to {
+        box-shadow: 0 0 10px var(--f1-gold), 0 0 20px var(--f1-red);
+    }
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 5px;
+}
+
+.song-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.song-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.song-item span {
+    font-size: 0.95em;
+    font-weight: bold;
+    color: var(--f1-gold);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Contenido Principal */
+.f1-content {
+    position: relative;
+    z-index: 10;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    margin-top: -1px;
+    background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('segundo-fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* ========= NUEVOS ESTILOS: LÍNEA DE TIEMPO ========= */
+.timeline-section {
+    padding: 80px 0;
+}
+
+.timeline-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--f1-red);
+    text-shadow: 0 0 5px rgba(225, 6, 0, 0.5);
+}
+
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--f1-light-gray);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.timeline-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--f1-off-black);
+    border: 3px solid var(--f1-red);
+    top: 30px;
+    border-radius: 50%;
+    z-index: 1;
+}
 
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -10px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(10px);
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-container {
+    position: relative;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    overflow: hidden; /* Para que el overlay no se salga */
+}
+
+.timeline-image {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+.zoom-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2.5em;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Para que no interfiera con el clic en la imagen */
+}
+
+.image-container:hover .timeline-image {
+    filter: brightness(0.7);
+}
+
+.image-container:hover .zoom-icon {
+    opacity: 1;
+}
+
+.timeline-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--f1-gold);
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.timeline-content h3 {
+    font-size: 1em;
+    color: #aaa;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.timeline-content p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+/* Galería de Pilotos */
+.gallery-section {
+    padding-top: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--f1-red);
+    text-shadow: 0 0 5px rgba(225, 6, 0, 0.5);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+    padding: 15px 10px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(8px);
+    box-sizing: border-box;
+}
+
+.gallery-card:hover .card-overlay {
+    transform: translateY(0);
+}
+
+.pit-board {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 5px black;
+}
+
+/* Sección de placeholder para Equipos */
+.section-placeholder {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    margin: 50px auto;
+    max-width: 1400px;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.section-placeholder h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--f1-light-gray);
+    font-size: 2.5em;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+/* Mensaje Personal */
+.personal-message-section {
+    padding: 50px 20px;
+    text-align: center;
+    max-width: 800px;
+    margin: 50px auto;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+.personal-message-section p {
+    font-family: 'Georgia', serif;
+    font-size: 1.3em;
+    line-height: 1.7;
+    color: #eee;
+}
+
+/* ========= Lightbox Styles ========= */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lightbox-gallery-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 80%;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    animation: zoomIn 0.3s forwards;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2em;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 210;
+    display: none; /* Ocultos por defecto */
+}
+
+.lightbox-nav:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-nav.prev {
+    left: 10px;
+}
+
+.lightbox-nav.next {
+    right: 10px;
+}
+
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.lightbox-caption {
+    margin: 15px auto 0 auto;
+    display: block;
+    width: 80%;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    font-size: 1.2em;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: var(--f1-red);
+    text-decoration: none;
+    cursor: pointer;
+}
 
 
 
