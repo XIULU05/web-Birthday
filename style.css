@@ -32,6 +32,16 @@ body {
     position: relative;
     padding-top: 100px;
     box-sizing: border-box;
+    overflow: hidden; /* Para que las partículas no se salgan */
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .main-header {
@@ -39,10 +49,9 @@ body {
     width: 100%;
     max-width: 800px;
     padding: 0 20px;
-    position: absolute;
+    position: relative; 
     top: 2px;
-    left: 50%;
-    transform: translateX(-50%);
+    z-index: 2; 
 }
 
 .main-header h1 {
@@ -68,6 +77,30 @@ body {
 .fade-in-up {
     animation: fadeInUp 1s ease-out forwards;
     opacity: 0;
+}
+
+.scroll-down-arrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: white;
+    font-size: 2em;
+    text-decoration: none;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-15px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-10px);
+    }
 }
 
 
@@ -239,7 +272,7 @@ body {
     background-attachment: fixed;
 }
 
-/* ========= NUEVOS ESTILOS: LÍNEA DE TIEMPO ========= */
+/* ========= LÍNEA DE TIEMPO ========= */
 .timeline-section {
     padding: 80px 0;
 }
@@ -325,7 +358,7 @@ body {
     position: relative;
     margin-bottom: 15px;
     border-radius: 6px;
-    overflow: hidden; /* Para que el overlay no se salga */
+    overflow: hidden;
 }
 
 .timeline-image {
@@ -351,7 +384,7 @@ body {
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease;
-    pointer-events: none; /* Para que no interfiera con el clic en la imagen */
+    pointer-events: none;
 }
 
 .image-container:hover .timeline-image {
