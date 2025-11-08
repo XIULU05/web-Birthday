@@ -69,19 +69,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
 
     function showImage(index) {
-        lightboxImg.src = currentGallery[index];
-        const tempImage = new Image();
-        tempImage.src = currentGallery[index];
-        tempImage.onload = () => {
-             lightboxCaption.innerHTML = tempImage.alt || `Imagen ${index + 1} de ${currentGallery.length}`;
-        };
+        const imageName = currentGallery[index];
+        const imageElement = document.querySelector(`img[src='${imageName}']`);
+        lightboxImg.src = imageName;
+        lightboxCaption.innerHTML = imageElement ? imageElement.alt : `Imagen ${index + 1} de ${currentGallery.length}`;
     }
 
     if (clickableImages.length > 0 && lightbox) {
         clickableImages.forEach(image => {
             image.addEventListener('click', () => {
-                const mainImageSrc = image.src;
+                const mainImageSrc = image.getAttribute('src');
                 const galleryData = image.getAttribute('data-gallery');
+                
                 currentGallery = [mainImageSrc];
                 if (galleryData) {
                     currentGallery = currentGallery.concat(galleryData.split(','));
@@ -107,17 +106,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (event) => {
-            if (event.target === lightbox) {
+            if (event.target !== lightboxImg && event.target !== prevButton && event.target !== nextButton) {
                 closeLightbox();
             }
         });
 
-        prevButton.addEventListener('click', () => {
+        prevButton.addEventListener('click', (e) => {
+            e.stopPropagation();
             currentIndex = (currentIndex > 0) ? currentIndex - 1 : currentGallery.length - 1;
             showImage(currentIndex);
         });
 
-        nextButton.addEventListener('click', () => {
+        nextButton.addEventListener('click', (e) => {
+            e.stopPropagation();
             currentIndex = (currentIndex < currentGallery.length - 1) ? currentIndex + 1 : 0;
             showImage(currentIndex);
         });
@@ -139,6 +140,67 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(item);
         });
     }
+    
+    // 5. INICIALIZACIÓN DE PARTICLES.JS
+    particlesJS('particles-js', {
+        "particles": {
+            "number": {
+                "value": 60,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#FFC000"
+            },
+            "shape": {
+                "type": "circle",
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": true,
+                "anim": {
+                    "enable": true,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                }
+            },
+            "line_linked": {
+                "enable": false,
+            },
+            "move": {
+                "enable": true,
+                "speed": 1,
+                "direction": "none",
+                "random": true,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": false,
+                },
+                "onclick": {
+                    "enable": false,
+                },
+                "resize": true
+            }
+        },
+        "retina_detect": true
+    });
 });
 
 
