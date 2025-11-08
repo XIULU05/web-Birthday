@@ -12,6 +12,18 @@
 </head>
 <body>
 
+    <div class="lock-screen" id="lock-screen">
+        <div class="lock-box">
+            <h3>¿Qué día es hoy, querida dama?</h3>
+            <input type="text" id="password-input" placeholder="DD/MM/YYYY" maxlength="10">
+            <button id="password-submit">Entrar</button>
+            <p id="password-error" class="hidden"></p>
+            <button id="audio-hint" class="audio-player hidden">
+                <i class="fas fa-play"></i> Pista de audio
+            </button>
+        </div>
+    </div>
+
     <nav class="f1-navbar">
         <div class="logo">
             <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/1200px-F1.svg.png" alt="F1 Logo" class="f1-logo"></a>
@@ -20,7 +32,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#nuestra-carrera">Nuestra Carrera</a></li>
             <li><a href="#drivers">Drivers</a></li>
-            <li><a href="#teams">Teams</a></li>
+            <li><a href="#podium">Nuestro Podium</a></li>
             <li><a href="#message">My F1</a></li>
         </ul>
         <div class="nav-icons">
@@ -76,6 +88,7 @@
                         <h3>Cuarto de Secundaria</h3>
                         <h2>La Conexión Virtual</h2>
                         <p>En medio de un mundo en pausa, nació una conexión única. No nos veíamos, pero nos leíamos. Éramos 'Licenciado y Licenciada', dos amigos forjando un lazo a través de una pantalla, sin saber que era la primera vuelta de nuestra carrera juntos.</p>
+                        <button class="audio-player" data-audio="audio/licenciado.mp3"><i class="fas fa-play"></i> Escuchar Recuerdo</button>
                     </div>
                 </div>
 
@@ -88,6 +101,7 @@
                         <h3>Quinto de Secundaria</h3>
                         <h2>El Encuentro</h2>
                         <p>El salto de la pantalla a la realidad. El impacto fue instantáneo. 'Wow, en serio eres tú'. En ese momento, la amistad que conocíamos encontró una nueva dimensión y se convirtió en la base sólida de todo lo que vendría.</p>
+                        <button class="audio-player" data-audio="audio/primera ves que la vi.mp3"><i class="fas fa-play"></i> Escuchar Recuerdo</button>
                     </div>
                 </div>
 
@@ -100,6 +114,7 @@
                         <h3>Sexto de Secundaria</h3>
                         <h2>El Punto de Inflexión</h2>
                         <p>A veces, el silencio habla más fuerte. Después de un 'no' y meses de distancia, un mensaje lo cambió todo. Fue el reinicio, la decisión de ver qué pasaba, y se convirtió en una de las mejores decisiones de nuestras vidas.</p>
+                        <button class="audio-player" data-audio="audio/mensaje de whatsapp.mp3"><i class="fas fa-play"></i> Escuchar Recuerdo</button>
                     </div>
                 </div>
 
@@ -112,6 +127,7 @@
                         <h3>El Gran Evento</h3>
                         <h2>La Coronación</h2>
                         <p>El universo nos dio una señal. Nombrados 'Emperador y Emperatriz', fuimos los protagonistas de la noche. Un momento que se sintió como un cuento de hadas, una confirmación pública de que estábamos destinados a brillar juntos.</p>
+                        <button class="audio-player" data-audio="audio/emperador.mp3"><i class="fas fa-play"></i> Escuchar Recuerdo</button>
                     </div>
                 </div>
 
@@ -124,6 +140,7 @@
                         <h3>Post-Graduación</h3>
                         <h2>Nuestra Primera Aventura</h2>
                         <p>El sol, el mar y el inicio de nuestras memorias como pareja. Este viaje a la playa fue más que una simple cita; fue un momento mágico, la prueba de que la felicidad era esto: explorar el mundo, pero siempre contigo al lado.</p>
+                        <button class="audio-player" data-audio="audio/playa.mp3"><i class="fas fa-play"></i> Escuchar Recuerdo</button>
                     </div>
                 </div>
                  
@@ -347,12 +364,56 @@
             </div>
         </section>
 
-        <section id="teams" class="section-placeholder">
-             <h2>Próximamente: Equipos Favoritos...</h2>
+        <section id="podium" class="podium-section">
+            <h2>Nuestro Podium</h2>
+            <div class="podium-grid">
+                
+                <div class="award-card">
+                    <div class="award-icon">🏆</div>
+                    <h3>Trofeo a la Mejor Sonrisa</h3>
+                    <p>Por tener la sonrisa que ilumina cada día y que se convirtió en mi vista favorita en el mundo.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">🥇</div>
+                    <h3>Medalla a la Campeona de los Abrazos</h3>
+                    <p>Por ser mi refugio y mi "parada en pits" personal. No hay problema que uno de tus abrazos no pueda arreglar.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon">✨</div>
+                    <h3>Premio a la Mejor Compañera de Aventuras</h3>
+                    <p>Porque contigo, desde una tarde de clases virtuales hasta un viaje a la playa, todo se siente como una vuelta rápida.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Reconocimiento a la Lectora Apasionada</h3>
+                    <p>Por perderte en mundos de fantasía y encontrar inspiración en cada página, recordándome que nuestra historia es igual de épica.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Mención Honorífica a la Artista del Diseño</h3>
+                    <p>Por dar vida a tus sueños con cada trazo y diseño. Tu creatividad no tiene límites, y siempre me asombra.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Galardón a la Fortaleza Inquebrantable</h3>
+                    <p>Sé que la vida no siempre ha sido justa, y aunque no mereces pasar por ciertas cosas, quiero que sepas que siempre estaré aquí para ti, en cada curva y recta del camino.</p>
+                </div>
+                
+            </div>
         </section>
 
         <section id="message" class="personal-message-section">
-            <p id="message-text"></p>
+            <h2>Un Mensaje de tu Copiloto</h2>
+            <div class="video-container">
+                <iframe src="ENLACE_DE_TU_VIDEO_DE_GOOGLE_DRIVE_AQUÍ" 
+                    width="640" height="480" allow="autoplay" allowfullscreen>
+                </iframe>
+            </div>
         </section>
     </main>
 
@@ -366,7 +427,7 @@
         <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script src="js/script.js" defer></script>
 </body>
 </html>

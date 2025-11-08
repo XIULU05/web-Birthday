@@ -417,8 +417,35 @@ body {
     margin: 0;
 }
 
+.audio-player {
+    background-color: var(--f1-red);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-top: 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
 
-/* ========= SECCIÓN DE PILOTOS ACTUALIZADA ========= */
+.audio-player:hover {
+    background-color: var(--f1-gold);
+    color: var(--f1-off-black);
+    transform: scale(1.05);
+}
+
+.audio-player i {
+    font-size: 0.9em;
+}
+
+
+/* ========= SECCIÓN DE PILOTOS ========= */
 .gallery-section {
     padding-top: 50px;
     max-width: 1400px;
@@ -434,10 +461,8 @@ body {
     text-shadow: 0 0 5px rgba(225, 6, 0, 0.5);
 }
 
-/* Nuevo grid para las tarjetas 3D */
 .driver-card-grid {
     display: grid;
-    /* CAMBIO APLICADO: 4 columnas en pantallas grandes */
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
     gap: 30px; 
     max-width: 1400px; 
@@ -446,10 +471,8 @@ body {
     padding: 0 20px;
 }
 
-/* Estilos para la tarjeta 3D (basado en tu código) */
 .flip-card {
     background-color: transparent;
-    /* CAMBIO APLICADO: Ancho y alto ajustados */
     width: 280px; 
     height: 440px; 
     perspective: 1000px;
@@ -493,39 +516,70 @@ body {
     object-fit: cover; 
 }
 
-
-/* Sección de placeholder para Equipos */
-.section-placeholder {
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-    margin: 50px auto;
-    max-width: 1400px;
-    border-radius: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+/* ========= NUEVA SECCIÓN: PODIUM ========= */
+.podium-section {
+    padding: 80px 0;
 }
 
-.section-placeholder h2 {
+.podium-section h2 {
     font-family: 'Orbitron', sans-serif;
-    color: var(--f1-light-gray);
-    font-size: 2.5em;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--f1-gold); /* Dorado para esta sección */
+    text-shadow: 0 0 10px var(--f1-gold);
+}
+
+.podium-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.award-card {
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid var(--f1-gold);
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 196, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.award-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 196, 0, 0.4);
+}
+
+.award-icon {
+    font-size: 3em;
     margin-bottom: 20px;
 }
 
-/* Mensaje Personal */
+.award-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--f1-gold);
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.award-card p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #ccc;
+    margin: 0;
+}
+
+/* ========= SECCIÓN DE MENSAJE ACTUALIZADA ========= */
 .personal-message-section {
     padding: 50px 20px;
     text-align: center;
-    max-width: 800px;
+    max-width: 900px; /* Un poco más ancho para el video */
     margin: 50px auto;
     background: rgba(0,0,0,0.7);
     backdrop-filter: blur(10px);
@@ -534,12 +588,34 @@ body {
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
 }
 
-.personal-message-section p {
-    font-family: 'Georgia', serif;
-    font-size: 1.3em;
-    line-height: 1.7;
-    color: #eee;
+.personal-message-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--f1-red);
+    text-shadow: 0 0 5px rgba(225, 6, 0, 0.5);
 }
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporción 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 8px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
 
 /* ========= Lightbox Styles ========= */
 .lightbox-overlay {
@@ -647,4 +723,95 @@ body {
     color: var(--f1-red);
     text-decoration: none;
     cursor: pointer;
+}
+
+/* ========= NUEVOS ESTILOS: PANTALLA DE BLOQUEO ========= */
+
+.hidden {
+    display: none !important;
+}
+
+.lock-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-out;
+    opacity: 1;
+}
+
+.lock-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lock-box {
+    background: rgba(10, 10, 10, 0.85);
+    padding: 30px 40px;
+    border-radius: 10px;
+    border: 1px solid var(--f1-gold);
+    box-shadow: 0 0 30px rgba(255, 196, 0, 0.5);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.lock-box h3 {
+    color: var(--f1-gold);
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 0;
+    font-size: 1.4em;
+}
+
+#password-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 2px solid var(--f1-light-gray);
+    background: var(--f1-off-black);
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+#password-submit {
+    background-color: var(--f1-red);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 25px;
+    margin-top: 25px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#password-submit:hover {
+    background-color: var(--f1-gold);
+    color: var(--f1-off-black);
+    transform: scale(1.05);
+}
+
+#password-error {
+    color: var(--f1-red);
+    margin-top: 20px;
+    font-size: 0.9em;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+#audio-hint {
+    margin-top: 15px;
+    background-color: var(--f1-light-gray);
 }
