@@ -50,7 +50,7 @@ body {
     max-width: 800px;
     padding: 0 20px;
     position: relative; 
-    top: 2px;
+    top: -10px;
     z-index: 2; 
 }
 
@@ -645,3 +645,4 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
