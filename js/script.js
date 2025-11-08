@@ -70,7 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showImage(index) {
         const imageName = currentGallery[index];
-        const imageElement = document.querySelector(`img[src='${imageName}']`);
+        // Pequeña corrección para encontrar el 'alt' text de la imagen principal
+        const imageElement = document.querySelector(`img[src='${imageName}'], img[data-gallery*='${imageName}']`);
+        
         lightboxImg.src = imageName;
         lightboxCaption.innerHTML = imageElement ? imageElement.alt : `Imagen ${index + 1} de ${currentGallery.length}`;
     }
@@ -142,67 +144,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // 5. INICIALIZACIÓN DE PARTICLES.JS
-    particlesJS('particles-js', {
-        "particles": {
-            "number": {
-                "value": 60,
-                "density": {
-                    "enable": true,
-                    "value_area": 800
-                }
-            },
-            "color": {
-                "value": "#FFC000"
-            },
-            "shape": {
-                "type": "circle",
-            },
-            "opacity": {
-                "value": 0.5,
-                "random": true,
-                "anim": {
+    // Comprobamos si la librería particlesJS se ha cargado
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 60,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#FFC000"
+                },
+                "shape": {
+                    "type": "circle",
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                    }
+                },
+                "line_linked": {
+                    "enable": false,
+                },
+                "move": {
                     "enable": true,
                     "speed": 1,
-                    "opacity_min": 0.1,
-                    "sync": false
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
                 }
             },
-            "size": {
-                "value": 3,
-                "random": true,
-                "anim": {
-                    "enable": false,
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                    },
+                    "onclick": {
+                        "enable": false,
+                    },
+                    "resize": true
                 }
             },
-            "line_linked": {
-                "enable": false,
-            },
-            "move": {
-                "enable": true,
-                "speed": 1,
-                "direction": "none",
-                "random": true,
-                "straight": false,
-                "out_mode": "out",
-                "bounce": false,
-            }
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-                "onhover": {
-                    "enable": false,
-                },
-                "onclick": {
-                    "enable": false,
-                },
-                "resize": true
-            }
-        },
-        "retina_detect": true
-    });
+            "retina_detect": true
+        });
+    } else {
+        console.error('Error: particles.js no se ha cargado correctamente.');
+    }
 });
-
 
 
 
