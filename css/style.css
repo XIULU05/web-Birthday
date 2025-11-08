@@ -22,7 +22,8 @@ body {
 /* ========= Sección Héroe Actualizada ========= */
 .hero-section {
     height: 100vh;
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2) 50%, rgba(0,0,0,0.6)), url('fondo.png');
+    /* RUTA CORREGIDA */
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2) 50%, rgba(0,0,0,0.6)), url('../images/fondo.png');
     background-size: cover;
     background-position: center 70%;
     background-attachment: fixed;
@@ -50,7 +51,7 @@ body {
     max-width: 800px;
     padding: 0 20px;
     position: relative; 
-    top: -99px;
+    top: 2px;
     z-index: 2; 
 }
 
@@ -266,7 +267,8 @@ body {
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(8px);
     margin-top: -1px;
-    background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('segundo-fondo.jpg');
+    /* RUTA CORREGIDA */
+    background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../images/segundo-fondo.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -645,6 +647,4 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
-
-
 
