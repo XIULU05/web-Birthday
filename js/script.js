@@ -38,30 +38,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     audioPlayers.forEach(player => {
         const audioSrc = player.getAttribute('data-audio');
-        if (!audioSrc) return; // Salta si no tiene data-audio (como el de la pista)
+        if (!audioSrc) return; // Salta si no tiene data-audio (como el de la pista de contraseña)
+        
         const audio = new Audio(audioSrc);
 
-        player.addEventListener('click', () => {
+        player.addEventListener('click', (e) => {
+            e.stopPropagation(); // Previene que se dispare el lightbox
+            
             if (currentAudio && currentAudio !== audio) {
                 currentAudio.pause(); 
-                const oldPlayer = document.querySelector(`button[data-audio="${currentAudio.src.substring(currentAudio.src.lastIndexOf('/') + 1)}"]`);
-                if(oldPlayer) {
-                    oldPlayer.innerHTML = '<i class="fas fa-play"></i> Escuchar Recuerdo';
-                }
+                // Busca el botón que está reproduciendo ESE audio y lo resetea
+                document.querySelectorAll('.audio-player').forEach(p => {
+                    if (p.getAttribute('data-audio') === currentAudio.src.substring(currentAudio.src.lastIndexOf('/') + 1)) {
+                        p.innerHTML = p.id === 'audio-hint' ? '<i class="fas fa-play"></i> Pista de audio' : '<i class="fas fa-play"></i> Escuchar Recuerdo';
+                    }
+                });
             }
 
             if (audio.paused) {
                 audio.play();
-                player.innerHTML = '<i class="fas fa-pause"></i> Pausar Recuerdo';
+                player.innerHTML = player.id === 'audio-hint' ? '<i class="fas fa-pause"></i> Pausar Pista' : '<i class="fas fa-pause"></i> Pausar Recuerdo';
                 currentAudio = audio;
             } else {
                 audio.pause();
-                player.innerHTML = '<i class="fas fa-play"></i> Escuchar Recuerdo';
+                player.innerHTML = player.id === 'audio-hint' ? '<i class="fas fa-play"></i> Pista de audio' : '<i class="fas fa-play"></i> Escuchar Recuerdo';
                 currentAudio = null;
             }
 
             audio.onended = () => {
-                player.innerHTML = '<i class="fas fa-play"></i> Escuchar Recuerdo';
+                player.innerHTML = player.id === 'audio-hint' ? '<i class="fas fa-play"></i> Pista de audio' : '<i class="fas fa-play"></i> Escuchar Recuerdo';
                 currentAudio = null;
             };
         });
@@ -219,62 +224,84 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error: particles.js no se ha cargado correctamente.');
     }
 
-    // ========= 6. LÓGICA DE PANTALLA DE BLOQUEO (CORREGIDA) =========
+    // ========= 6. LÓGICA DE PANTALLA DE BLOQUEO (CON INTRO DE VIDEO) =========
     const lockScreen = document.getElementById('lock-screen');
     const passwordInput = document.getElementById('password-input');
     const passwordSubmit = document.getElementById('password-submit');
     const passwordError = document.getElementById('password-error');
     const audioHint = document.getElementById('audio-hint');
     const hintAudio = new Audio('audio/contraseña.mp3');
+    
+    const videoIntroScreen = document.getElementById('video-intro-screen');
+    const introVideo = document.getElementById('intro-video');
 
-    // Aceptamos ambas contraseñas por seguridad
     const correctPassword1 = "9/11/2025";
     const correctPassword2 = "09/11/2025";
     let attempts = 0;
 
-    // ELIMINAMOS el formateo automático de fecha. Es más simple y seguro.
-    
     // Lógica al presionar "Entrar"
     passwordSubmit.addEventListener('click', () => {
-        const inputPassword = passwordInput.value.trim(); // Limpiamos espacios
+        const inputPassword = passwordInput.value.trim();
         
         if (inputPassword === correctPassword1 || inputPassword === correctPassword2) {
             // Éxito
-            lockScreen.classList.add('hidden');
+            lockScreen.classList.add('fade-out'); // Desvanece la pantalla de bloqueo
+            videoIntroScreen.classList.remove('hidden'); // Muestra la pantalla de video
+            
+            // Intenta reproducir el video
+            introVideo.play().catch(error => {
+                // Política de Autoplay: si falla, esconde el video y muestra la web.
+                console.warn("El autoplay del video fue bloqueado. Mostrando web.", error);
+                videoIntroScreen.classList.add('hidden');
+            });
+
+            // Oculta la pantalla de bloqueo después de la animación
+            setTimeout(() => {
+                lockScreen.classList.add('hidden');
+            }, 1000);
+
         } else {
             // Fallo
             attempts++;
-            passwordInput.value = ""; // Limpia el campo para reintentar
+            passwordInput.value = "";
             passwordError.classList.remove('hidden');
 
             if (attempts === 1) {
-                // Tu pista 1
                 passwordError.textContent = "¡Ups! Pista: ¿qué día es que cumple años mi querida emperatriz? (Formato: DD/MM/YYYY)";
             } else if (attempts === 2) {
-                // Tu pista 2 (más coqueta)
                 passwordError.textContent = "¡Casi! Te dejo ser más coqueta. ¿Cuál es la fecha de la campeona? (Usa las barras / )";
             } else {
-                // Pista final con audio
                 passwordError.textContent = "¡Uy! Parece que estás atascada. Escucha esta pista de audio.";
                 audioHint.classList.remove('hidden');
             }
         }
     });
 
-    // Lógica para el botón de audio
+    // Lógica para el botón de audio de pista
     audioHint.addEventListener('click', () => {
         if (hintAudio.paused) {
             hintAudio.play();
             audioHint.innerHTML = '<i class="fas fa-pause"></i> Pausar Pista';
+            currentAudio = hintAudio; // Asegura que se pause si se reproduce otro
         } else {
             hintAudio.pause();
             hintAudio.currentTime = 0;
             audioHint.innerHTML = '<i class="fas fa-play"></i> Pista de audio';
+            currentAudio = null;
         }
 
         hintAudio.onended = () => {
             audioHint.innerHTML = '<i class="fas fa-play"></i> Pista de audio';
+            currentAudio = null;
         };
     });
+    
+    // Lógica para cuando el video intro termine
+    introVideo.onended = () => {
+        videoIntroScreen.classList.add('fade-out'); // Desvanece la pantalla de video
+        setTimeout(() => {
+            videoIntroScreen.classList.add('hidden'); // La oculta después
+        }, 1000); // 1 segundo de fade-out
+    };
 
 });

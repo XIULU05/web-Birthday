@@ -15,13 +15,20 @@
     <div class="lock-screen" id="lock-screen">
         <div class="lock-box">
             <h3>¿Qué día es hoy, querida dama?</h3>
-            <input type="text" id="password-input" placeholder="DD/MM/YYYY" maxlength="10">
+            <input type="text" id="password-input" placeholder="DD/MM/YYYY">
             <button id="password-submit">Entrar</button>
             <p id="password-error" class="hidden"></p>
             <button id="audio-hint" class="audio-player hidden">
                 <i class="fas fa-play"></i> Pista de audio
             </button>
         </div>
+    </div>
+
+    <div class="video-intro-screen hidden" id="video-intro-screen">
+        <video id="intro-video" muted playsinline>
+            <source src="audio/intro.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
     </div>
 
     <nav class="f1-navbar">
@@ -126,7 +133,7 @@
                         </div>
                         <h3>El Gran Evento</h3>
                         <h2>La Coronación</h2>
-                        <p>El universo nos dio una señal. Nombrados 'Emperador y Emperatriz', fuimos los protagonistas de la noche. Un momento que se sintió como un cuento de hadas, una confirmación pública de que estábamos destinados a brillar juntos.</p>
+                        <p>El universo nos dio una señal. Nombrados 'Emperador y Emperatriz', fuimos los protagonists de la noche. Un momento que se sintió como un cuento de hadas, una confirmación pública de que estábamos destinados a brillar juntos.</p>
                         <button class="audio-player" data-audio="audio/emperador.mp3"><i class="fas fa-play"></i> Escuchar Recuerdo</button>
                     </div>
                 </div>
@@ -402,6 +409,16 @@
                     <div class="award-icon"><i class="fas fa-heart"></i></div>
                     <h3>Galardón a la Fortaleza Inquebrantable</h3>
                     <p>Sé que la vida no siempre ha sido justa, y aunque no mereces pasar por ciertas cosas, quiero que sepas que siempre estaré aquí para ti, en cada curva y recta del camino.</p>
+                </div>
+
+                <div class="award-card">
+                    <div class="award-icon"><i class="fas fa-users"></i></div>
+                    <h3>Mensajes del Equipo de Casa</h3>
+                    <p>Unas pequeñas fans también querían felicitarte. ¡Escúchalas!</p>
+                    <div class="sister-audio-buttons">
+                        <button class="audio-player" data-audio="audio/emma.mp3"><i class="fas fa-play"></i> Emma</button>
+                        <button class="audio-player" data-audio="audio/sonya.mp3"><i class="fas fa-play"></i> Sonya</button>
+                    </div>
                 </div>
                 
             </div>

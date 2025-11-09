@@ -575,6 +575,14 @@ body {
     margin: 0;
 }
 
+.sister-audio-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
 /* ========= SECCIÓN DE MENSAJE ACTUALIZADA ========= */
 .personal-message-section {
     padding: 50px 20px;
@@ -740,6 +748,7 @@ body {
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px); /* Para Safari */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -747,7 +756,7 @@ body {
     opacity: 1;
 }
 
-.lock-screen.hidden {
+.lock-screen.fade-out {
     opacity: 0;
     pointer-events: none;
 }
@@ -814,4 +823,33 @@ body {
 #audio-hint {
     margin-top: 15px;
     background-color: var(--f1-light-gray);
+}
+
+/* ========= NUEVOS ESTILOS: PANTALLA DE INTRO ========= */
+
+.video-intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999; /* Debajo del lock-screen pero encima de todo lo demás */
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-out;
+    opacity: 1;
+}
+
+.video-intro-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#intro-video {
+    /* ESTILOS DE PANTALLA COMPLETA */
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Cubre toda la pantalla sin distorsionar */
 }
